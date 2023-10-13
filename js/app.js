@@ -3,12 +3,12 @@
     function isWebp() {
         function testWebP(callback) {
             let webP = new Image;
-            webP.onload = webP.onerror = function() {
+            webP.onload = webP.onerror = function () {
                 callback(webP.height == 2);
             };
             webP.src = "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA";
         }
-        testWebP((function(support) {
+        testWebP((function (support) {
             let className = support === true ? "webp" : "no-webp";
             document.documentElement.classList.add(className);
         }));
@@ -102,7 +102,7 @@
                 document.documentElement.classList.remove("lock");
             }), delay);
             bodyLockStatus = false;
-            setTimeout((function() {
+            setTimeout((function () {
                 bodyLockStatus = true;
             }), delay);
         }
@@ -118,7 +118,7 @@
             body.style.paddingRight = window.innerWidth - document.querySelector(".wrapper").offsetWidth + "px";
             document.documentElement.classList.add("lock");
             bodyLockStatus = false;
-            setTimeout((function() {
+            setTimeout((function () {
                 bodyLockStatus = true;
             }), delay);
         }
@@ -126,13 +126,13 @@
     function spollers() {
         const spollersArray = document.querySelectorAll("[data-spollers]");
         if (spollersArray.length > 0) {
-            const spollersRegular = Array.from(spollersArray).filter((function(item, index, self) {
+            const spollersRegular = Array.from(spollersArray).filter((function (item, index, self) {
                 return !item.dataset.spollers.split(",")[0];
             }));
             if (spollersRegular.length) initSpollers(spollersRegular);
             let mdQueriesArray = dataMediaQueries(spollersArray, "spollers");
             if (mdQueriesArray && mdQueriesArray.length) mdQueriesArray.forEach((mdQueriesItem => {
-                mdQueriesItem.matchMedia.addEventListener("change", (function() {
+                mdQueriesItem.matchMedia.addEventListener("change", (function () {
                     initSpollers(mdQueriesItem.itemsArray, mdQueriesItem.matchMedia);
                 }));
                 initSpollers(mdQueriesItem.itemsArray, mdQueriesItem.matchMedia);
@@ -191,7 +191,7 @@
                 }
             }
             const spollersClose = document.querySelectorAll("[data-spoller-close]");
-            if (spollersClose.length) document.addEventListener("click", (function(e) {
+            if (spollersClose.length) document.addEventListener("click", (function (e) {
                 const el = e.target;
                 if (!el.closest("[data-spollers]")) spollersClose.forEach((spollerClose => {
                     const spollersBlock = spollerClose.closest("[data-spollers]");
@@ -203,7 +203,7 @@
         }
     }
     function menuInit() {
-        if (document.querySelector(".icon-menu")) document.addEventListener("click", (function(e) {
+        if (document.querySelector(".icon-menu")) document.addEventListener("click", (function (e) {
             if (bodyLockStatus && e.target.closest(".icon-menu")) {
                 bodyLockToggle();
                 document.documentElement.classList.toggle("menu-open");
@@ -220,12 +220,12 @@
         }), 0);
     }
     function uniqArray(array) {
-        return array.filter((function(item, index, self) {
+        return array.filter((function (item, index, self) {
             return self.indexOf(item) === index;
         }));
     }
     function dataMediaQueries(array, dataSetValue) {
-        const media = Array.from(array).filter((function(item, index, self) {
+        const media = Array.from(array).filter((function (item, index, self) {
             if (item.dataset[dataSetValue]) return item.dataset[dataSetValue].split(",")[0];
         }));
         if (media.length) {
@@ -239,7 +239,7 @@
                 breakpoint.item = item;
                 breakpointsArray.push(breakpoint);
             }));
-            let mdQueries = breakpointsArray.map((function(item) {
+            let mdQueries = breakpointsArray.map((function (item) {
                 return "(" + item.type + "-width: " + item.value + "px)," + item.value + "," + item.type;
             }));
             mdQueries = uniqArray(mdQueries);
@@ -250,7 +250,7 @@
                     const mediaBreakpoint = paramsArray[1];
                     const mediaType = paramsArray[2];
                     const matchMedia = window.matchMedia(paramsArray[0]);
-                    const itemsArray = breakpointsArray.filter((function(item) {
+                    const itemsArray = breakpointsArray.filter((function (item) {
                         if (item.value === mediaBreakpoint && item.type === mediaType) return true;
                     }));
                     mdQueriesArray.push({
@@ -301,10 +301,10 @@
     }
     const ssrDocument = {
         body: {},
-        addEventListener() {},
-        removeEventListener() {},
+        addEventListener() { },
+        removeEventListener() { },
         activeElement: {
-            blur() {},
+            blur() { },
             nodeName: ""
         },
         querySelector() {
@@ -318,7 +318,7 @@
         },
         createEvent() {
             return {
-                initEvent() {}
+                initEvent() { }
             };
         },
         createElement() {
@@ -326,7 +326,7 @@
                 children: [],
                 childNodes: [],
                 style: {},
-                setAttribute() {},
+                setAttribute() { },
                 getElementsByTagName() {
                     return [];
                 }
@@ -370,16 +370,16 @@
             search: ""
         },
         history: {
-            replaceState() {},
-            pushState() {},
-            go() {},
-            back() {}
+            replaceState() { },
+            pushState() { },
+            go() { },
+            back() { }
         },
         CustomEvent: function CustomEvent() {
             return this;
         },
-        addEventListener() {},
-        removeEventListener() {},
+        addEventListener() { },
+        removeEventListener() { },
         getComputedStyle() {
             return {
                 getPropertyValue() {
@@ -387,11 +387,11 @@
                 }
             };
         },
-        Image() {},
-        Date() {},
+        Image() { },
+        Date() { },
         screen: {},
-        setTimeout() {},
-        clearTimeout() {},
+        setTimeout() { },
+        clearTimeout() { },
         matchMedia() {
             return {};
         },
@@ -417,10 +417,10 @@
         Object.keys(object).forEach((key => {
             try {
                 object[key] = null;
-            } catch (e) {}
+            } catch (e) { }
             try {
                 delete object[key];
-            } catch (e) {}
+            } catch (e) { }
         }));
     }
     function utils_nextTick(callback, delay = 0) {
@@ -464,7 +464,7 @@
     }
     function utils_extend(...args) {
         const to = Object(args[0]);
-        const noExtend = [ "__proto__", "constructor", "prototype" ];
+        const noExtend = ["__proto__", "constructor", "prototype"];
         for (let i = 1; i < args.length; i += 1) {
             const nextSource = args[i];
             if (nextSource !== void 0 && nextSource !== null && !isNode(nextSource)) {
@@ -484,7 +484,7 @@
     function utils_setCSSProperty(el, varName, varValue) {
         el.style.setProperty(varName, varValue);
     }
-    function animateCSSModeScroll({swiper, targetPosition, side}) {
+    function animateCSSModeScroll({ swiper, targetPosition, side }) {
         const window = ssr_window_esm_getWindow();
         const startPosition = -swiper.translate;
         let startTime = null;
@@ -521,11 +521,11 @@
         animate();
     }
     function utils_elementChildren(element, selector = "") {
-        return [ ...element.children ].filter((el => el.matches(selector)));
+        return [...element.children].filter((el => el.matches(selector)));
     }
     function utils_createElement(tag, classes = []) {
         const el = document.createElement(tag);
-        el.classList.add(...Array.isArray(classes) ? classes : [ classes ]);
+        el.classList.add(...Array.isArray(classes) ? classes : [classes]);
         return el;
     }
     function elementPrevAll(el, selector) {
@@ -594,7 +594,7 @@
         return support;
     }
     let deviceCached;
-    function calcDevice({userAgent} = {}) {
+    function calcDevice({ userAgent } = {}) {
         const support = getSupport();
         const window = ssr_window_esm_getWindow();
         const platform = window.navigator.platform;
@@ -611,10 +611,10 @@
         const iphone = !ipad && ua.match(/(iPhone\sOS|iOS)\s([\d_]+)/);
         const windows = platform === "Win32";
         let macos = platform === "MacIntel";
-        const iPadScreens = [ "1024x1366", "1366x1024", "834x1194", "1194x834", "834x1112", "1112x834", "768x1024", "1024x768", "820x1180", "1180x820", "810x1080", "1080x810" ];
+        const iPadScreens = ["1024x1366", "1366x1024", "834x1194", "1194x834", "834x1112", "1112x834", "768x1024", "1024x768", "820x1180", "1180x820", "810x1080", "1080x810"];
         if (!ipad && macos && support.touch && iPadScreens.indexOf(`${screenWidth}x${screenHeight}`) >= 0) {
             ipad = ua.match(/(Version)\/([\d.]+)/);
-            if (!ipad) ipad = [ 0, 1, "13_0_0" ];
+            if (!ipad) ipad = [0, 1, "13_0_0"];
             macos = false;
         }
         if (android && !windows) {
@@ -656,7 +656,7 @@
         if (!browser) browser = calcBrowser();
         return browser;
     }
-    function Resize({swiper, on, emit}) {
+    function Resize({ swiper, on, emit }) {
         const window = ssr_window_esm_getWindow();
         let observer = null;
         let animationFrame = null;
@@ -669,10 +669,10 @@
             if (!swiper || swiper.destroyed || !swiper.initialized) return;
             observer = new ResizeObserver((entries => {
                 animationFrame = window.requestAnimationFrame((() => {
-                    const {width, height} = swiper;
+                    const { width, height } = swiper;
                     let newWidth = width;
                     let newHeight = height;
-                    entries.forEach((({contentBoxSize, contentRect, target}) => {
+                    entries.forEach((({ contentBoxSize, contentRect, target }) => {
                         if (target && target !== swiper.el) return;
                         newWidth = contentRect ? contentRect.width : (contentBoxSize[0] || contentBoxSize).inlineSize;
                         newHeight = contentRect ? contentRect.height : (contentBoxSize[0] || contentBoxSize).blockSize;
@@ -707,7 +707,7 @@
             window.removeEventListener("orientationchange", orientationChangeHandler);
         }));
     }
-    function Observer({swiper, extendParams, on, emit}) {
+    function Observer({ swiper, extendParams, on, emit }) {
         const observers = [];
         const window = ssr_window_esm_getWindow();
         const attach = (target, options = {}) => {
@@ -828,7 +828,7 @@
             const eventsArray = Array.isArray(events) ? events : events.split(" ");
             eventsArray.forEach((event => {
                 if (self.eventsAnyListeners && self.eventsAnyListeners.length) self.eventsAnyListeners.forEach((eventHandler => {
-                    eventHandler.apply(context, [ event, ...data ]);
+                    eventHandler.apply(context, [event, ...data]);
                 }));
                 if (self.eventsListeners && self.eventsListeners[event]) self.eventsListeners[event].forEach((eventHandler => {
                     eventHandler.apply(context, data);
@@ -874,7 +874,7 @@
             return parseFloat(node.getPropertyValue(getDirectionLabel(label)) || 0);
         }
         const params = swiper.params;
-        const {wrapperEl, slidesEl, size: swiperSize, rtlTranslate: rtl, wrongRTL} = swiper;
+        const { wrapperEl, slidesEl, size: swiperSize, rtlTranslate: rtl, wrongRTL } = swiper;
         const isVirtual = swiper.virtual && params.virtual.enabled;
         const previousSlidesLength = isVirtual ? swiper.virtual.slides.length : swiper.slides.length;
         const slides = utils_elementChildren(slidesEl, `.${swiper.params.slideClass}, swiper-slide`);
@@ -929,7 +929,7 @@
                     const marginRight = getDirectionPropertyValue(slideStyles, "margin-right");
                     const boxSizing = slideStyles.getPropertyValue("box-sizing");
                     if (boxSizing && boxSizing === "border-box") slideSize = width + marginLeft + marginRight; else {
-                        const {clientWidth, offsetWidth} = slide;
+                        const { clientWidth, offsetWidth } = slide;
                         slideSize = width + paddingLeft + paddingRight + marginLeft + marginRight + (offsetWidth - clientWidth);
                     }
                 }
@@ -988,7 +988,7 @@
                 swiper.virtualSize += size;
             }
         }
-        if (snapGrid.length === 0) snapGrid = [ 0 ];
+        if (snapGrid.length === 0) snapGrid = [0];
         if (spaceBetween !== 0) {
             const key = swiper.isHorizontal() && rtl ? "marginLeft" : getDirectionLabel("marginRight");
             slides.filter(((_, slideIndex) => {
@@ -1090,7 +1090,7 @@
     function updateSlidesProgress(translate = this && this.translate || 0) {
         const swiper = this;
         const params = swiper.params;
-        const {slides, rtlTranslate: rtl, snapGrid} = swiper;
+        const { slides, rtlTranslate: rtl, snapGrid } = swiper;
         if (slides.length === 0) return;
         if (typeof slides[0].swiperSlideOffset === "undefined") swiper.updateSlidesOffset();
         let offsetCenter = -translate;
@@ -1128,7 +1128,7 @@
         }
         const params = swiper.params;
         const translatesDiff = swiper.maxTranslate() - swiper.minTranslate();
-        let {progress, isBeginning, isEnd, progressLoop} = swiper;
+        let { progress, isBeginning, isEnd, progressLoop } = swiper;
         const wasBeginning = isBeginning;
         const wasEnd = isEnd;
         if (translatesDiff === 0) {
@@ -1168,7 +1168,7 @@
     }
     function updateSlidesClasses() {
         const swiper = this;
-        const {slides, params, slidesEl, activeIndex} = swiper;
+        const { slides, params, slidesEl, activeIndex } = swiper;
         const isVirtual = swiper.virtual && params.virtual.enabled;
         const getFilteredSlide = selector => utils_elementChildren(slidesEl, `.${params.slideClass}${selector}, swiper-slide${selector}`)[0];
         slides.forEach((slideEl => {
@@ -1216,7 +1216,7 @@
         const activeIndex = swiper.activeIndex;
         if (swiper.params.grid && swiper.params.grid.rows > 1) {
             const activeColumn = activeIndex;
-            const preloadColumns = [ activeColumn - amount ];
+            const preloadColumns = [activeColumn - amount];
             preloadColumns.push(...Array.from({
                 length: amount
             }).map(((_, i) => activeColumn + slidesPerView + i)));
@@ -1232,7 +1232,7 @@
         } else for (let i = Math.max(activeIndex - amount, 0); i <= Math.min(slideIndexLastInView + amount, len - 1); i += 1) if (i !== activeIndex && (i > slideIndexLastInView || i < activeIndex)) unlazy(swiper, i);
     };
     function getActiveIndexByTranslate(swiper) {
-        const {slidesGrid, params} = swiper;
+        const { slidesGrid, params } = swiper;
         const translate = swiper.rtlTranslate ? swiper.translate : -swiper.translate;
         let activeIndex;
         for (let i = 0; i < slidesGrid.length; i += 1) if (typeof slidesGrid[i + 1] !== "undefined") {
@@ -1244,7 +1244,7 @@
     function updateActiveIndex(newActiveIndex) {
         const swiper = this;
         const translate = swiper.rtlTranslate ? swiper.translate : -swiper.translate;
-        const {snapGrid, params, activeIndex: previousIndex, realIndex: previousRealIndex, snapIndex: previousSnapIndex} = swiper;
+        const { snapGrid, params, activeIndex: previousIndex, realIndex: previousRealIndex, snapIndex: previousSnapIndex } = swiper;
         let activeIndex = newActiveIndex;
         let snapIndex;
         const getVirtualRealIndex = aIndex => {
@@ -1317,7 +1317,7 @@
     };
     function getSwiperTranslate(axis = (this.isHorizontal() ? "x" : "y")) {
         const swiper = this;
-        const {params, rtlTranslate: rtl, translate, wrapperEl} = swiper;
+        const { params, rtlTranslate: rtl, translate, wrapperEl } = swiper;
         if (params.virtualTranslate) return rtl ? -translate : translate;
         if (params.cssMode) return translate;
         let currentTranslate = utils_getTranslate(wrapperEl, axis);
@@ -1327,7 +1327,7 @@
     }
     function setTranslate(translate, byController) {
         const swiper = this;
-        const {rtlTranslate: rtl, params, wrapperEl, progress} = swiper;
+        const { rtlTranslate: rtl, params, wrapperEl, progress } = swiper;
         let x = 0;
         let y = 0;
         const z = 0;
@@ -1356,7 +1356,7 @@
     }
     function translateTo(translate = 0, speed = this.params.speed, runCallbacks = true, translateBounds = true, internal) {
         const swiper = this;
-        const {params, wrapperEl} = swiper;
+        const { params, wrapperEl } = swiper;
         if (swiper.animating && params.preventInteractionOnTransition) return false;
         const minTranslate = swiper.minTranslate();
         const maxTranslate = swiper.maxTranslate();
@@ -1422,8 +1422,8 @@
         if (!swiper.params.cssMode) swiper.wrapperEl.style.transitionDuration = `${duration}ms`;
         swiper.emit("setTransition", duration, byController);
     }
-    function transitionEmit({swiper, runCallbacks, direction, step}) {
-        const {activeIndex, previousIndex} = swiper;
+    function transitionEmit({ swiper, runCallbacks, direction, step }) {
+        const { activeIndex, previousIndex } = swiper;
         let dir = direction;
         if (!dir) if (activeIndex > previousIndex) dir = "next"; else if (activeIndex < previousIndex) dir = "prev"; else dir = "reset";
         swiper.emit(`transition${step}`);
@@ -1438,7 +1438,7 @@
     }
     function transitionStart(runCallbacks = true, direction) {
         const swiper = this;
-        const {params} = swiper;
+        const { params } = swiper;
         if (params.cssMode) return;
         if (params.autoHeight) swiper.updateAutoHeight();
         transitionEmit({
@@ -1450,7 +1450,7 @@
     }
     function transitionEnd(runCallbacks = true, direction) {
         const swiper = this;
-        const {params} = swiper;
+        const { params } = swiper;
         swiper.animating = false;
         if (params.cssMode) return;
         swiper.setTransition(0);
@@ -1471,7 +1471,7 @@
         const swiper = this;
         let slideIndex = index;
         if (slideIndex < 0) slideIndex = 0;
-        const {params, snapGrid, slidesGrid, previousIndex, activeIndex, rtlTranslate: rtl, wrapperEl, enabled} = swiper;
+        const { params, snapGrid, slidesGrid, previousIndex, activeIndex, rtlTranslate: rtl, wrapperEl, enabled } = swiper;
         if (swiper.animating && params.preventInteractionOnTransition || !enabled && !internal && !initial) return false;
         const skip = Math.min(swiper.params.slidesPerGroupSkip, slideIndex);
         let snapIndex = skip + Math.floor((slideIndex - skip) / swiper.params.slidesPerGroup);
@@ -1571,7 +1571,7 @@
     }
     function slideNext(speed = this.params.speed, runCallbacks = true, internal) {
         const swiper = this;
-        const {enabled, params, animating} = swiper;
+        const { enabled, params, animating } = swiper;
         if (!enabled) return swiper;
         let perGroup = params.slidesPerGroup;
         if (params.slidesPerView === "auto" && params.slidesPerGroup === 1 && params.slidesPerGroupAuto) perGroup = Math.max(swiper.slidesPerViewDynamic("current", true), 1);
@@ -1589,7 +1589,7 @@
     }
     function slidePrev(speed = this.params.speed, runCallbacks = true, internal) {
         const swiper = this;
-        const {params, snapGrid, slidesGrid, rtlTranslate, enabled, animating} = swiper;
+        const { params, snapGrid, slidesGrid, rtlTranslate, enabled, animating } = swiper;
         if (!enabled) return swiper;
         const isVirtual = swiper.virtual && params.virtual.enabled;
         if (params.loop) {
@@ -1654,7 +1654,7 @@
     }
     function slideToClickedSlide() {
         const swiper = this;
-        const {params, slidesEl} = swiper;
+        const { params, slidesEl } = swiper;
         const slidesPerView = params.slidesPerView === "auto" ? swiper.slidesPerViewDynamic() : params.slidesPerView;
         let slideToIndex = swiper.clickedIndex;
         let realIndex;
@@ -1688,7 +1688,7 @@
     };
     function loopCreate(slideRealIndex) {
         const swiper = this;
-        const {params, slidesEl} = swiper;
+        const { params, slidesEl } = swiper;
         if (!params.loop || swiper.virtual && swiper.params.virtual.enabled) return;
         const slides = utils_elementChildren(slidesEl, `.${params.slideClass}, swiper-slide`);
         slides.forEach(((el, index) => {
@@ -1699,11 +1699,11 @@
             direction: params.centeredSlides ? void 0 : "next"
         });
     }
-    function loopFix({slideRealIndex, slideTo = true, direction, setTranslate, activeSlideIndex, byController, byMousewheel} = {}) {
+    function loopFix({ slideRealIndex, slideTo = true, direction, setTranslate, activeSlideIndex, byController, byMousewheel } = {}) {
         const swiper = this;
         if (!swiper.params.loop) return;
         swiper.emit("beforeLoopFix");
-        const {slides, allowSlidePrev, allowSlideNext, slidesEl, params} = swiper;
+        const { slides, allowSlidePrev, allowSlideNext, slidesEl, params } = swiper;
         swiper.allowSlidePrev = true;
         swiper.allowSlideNext = true;
         if (swiper.virtual && params.virtual.enabled) {
@@ -1789,7 +1789,7 @@
     }
     function loopDestroy() {
         const swiper = this;
-        const {params, slidesEl} = swiper;
+        const { params, slidesEl } = swiper;
         if (!params.loop || swiper.virtual && swiper.params.virtual.enabled) return;
         swiper.recalcSlides();
         const newSlidesOrder = [];
@@ -1851,7 +1851,7 @@
         const window = ssr_window_esm_getWindow();
         const data = swiper.touchEventsData;
         data.evCache.push(event);
-        const {params, touches, enabled} = swiper;
+        const { params, touches, enabled } = swiper;
         if (!enabled) return;
         if (!params.simulateTouch && event.pointerType === "mouse") return;
         if (swiper.animating && params.preventInteractionOnTransition) return;
@@ -1909,7 +1909,7 @@
         const document = ssr_window_esm_getDocument();
         const swiper = this;
         const data = swiper.touchEventsData;
-        const {params, touches, rtlTranslate: rtl, enabled} = swiper;
+        const { params, touches, rtlTranslate: rtl, enabled } = swiper;
         if (!enabled) return;
         if (!params.simulateTouch && event.pointerType === "mouse") return;
         let e = event;
@@ -2078,11 +2078,11 @@
         const data = swiper.touchEventsData;
         const pointerIndex = data.evCache.findIndex((cachedEv => cachedEv.pointerId === event.pointerId));
         if (pointerIndex >= 0) data.evCache.splice(pointerIndex, 1);
-        if ([ "pointercancel", "pointerout", "pointerleave" ].includes(event.type)) {
+        if (["pointercancel", "pointerout", "pointerleave"].includes(event.type)) {
             const proceed = event.type === "pointercancel" && (swiper.browser.isSafari || swiper.browser.isWebView);
             if (!proceed) return;
         }
-        const {params, touches, rtlTranslate: rtl, slidesGrid, enabled} = swiper;
+        const { params, touches, rtlTranslate: rtl, slidesGrid, enabled } = swiper;
         if (!enabled) return;
         if (!params.simulateTouch && event.pointerType === "mouse") return;
         let e = event;
@@ -2166,10 +2166,10 @@
     }
     function onResize() {
         const swiper = this;
-        const {params, el} = swiper;
+        const { params, el } = swiper;
         if (el && el.offsetWidth === 0) return;
         if (params.breakpoints) swiper.setBreakpoint();
-        const {allowSlideNext, allowSlidePrev, snapGrid} = swiper;
+        const { allowSlideNext, allowSlidePrev, snapGrid } = swiper;
         const isVirtual = swiper.virtual && swiper.params.virtual.enabled;
         swiper.allowSlideNext = true;
         swiper.allowSlidePrev = true;
@@ -2201,7 +2201,7 @@
     }
     function onScroll() {
         const swiper = this;
-        const {wrapperEl, rtlTranslate, enabled} = swiper;
+        const { wrapperEl, rtlTranslate, enabled } = swiper;
         if (!enabled) return;
         swiper.previousTranslate = swiper.translate;
         if (swiper.isHorizontal()) swiper.translate = -wrapperEl.scrollLeft; else swiper.translate = -wrapperEl.scrollTop;
@@ -2221,10 +2221,10 @@
         swiper.update();
     }
     let dummyEventAttached = false;
-    function dummyEventListener() {}
+    function dummyEventListener() { }
     const events = (swiper, method) => {
         const document = ssr_window_esm_getDocument();
-        const {params, el, wrapperEl, device} = swiper;
+        const { params, el, wrapperEl, device } = swiper;
         const capture = !!params.nested;
         const domMethod = method === "on" ? "addEventListener" : "removeEventListener";
         const swiperMethod = method;
@@ -2257,7 +2257,7 @@
     function attachEvents() {
         const swiper = this;
         const document = ssr_window_esm_getDocument();
-        const {params} = swiper;
+        const { params } = swiper;
         swiper.onTouchStart = onTouchStart.bind(swiper);
         swiper.onTouchMove = onTouchMove.bind(swiper);
         swiper.onTouchEnd = onTouchEnd.bind(swiper);
@@ -2281,7 +2281,7 @@
     const isGridEnabled = (swiper, params) => swiper.grid && params.grid && params.grid.rows > 1;
     function setBreakpoint() {
         const swiper = this;
-        const {realIndex, initialized, params, el} = swiper;
+        const { realIndex, initialized, params, el } = swiper;
         const breakpoints = params.breakpoints;
         if (!breakpoints || breakpoints && Object.keys(breakpoints).length === 0) return;
         const breakpoint = swiper.getBreakpoint(breakpoints, swiper.params.breakpointsBase, swiper.el);
@@ -2299,7 +2299,7 @@
             if (breakpointParams.grid.fill && breakpointParams.grid.fill === "column" || !breakpointParams.grid.fill && params.grid.fill === "column") el.classList.add(`${params.containerModifierClass}grid-column`);
             swiper.emitContainerClasses();
         }
-        [ "navigation", "pagination", "scrollbar" ].forEach((prop => {
+        ["navigation", "pagination", "scrollbar"].forEach((prop => {
             if (typeof breakpointParams[prop] === "undefined") return;
             const wasModuleEnabled = params[prop] && params[prop].enabled;
             const isModuleEnabled = breakpointParams[prop] && breakpointParams[prop].enabled;
@@ -2347,7 +2347,7 @@
         }));
         points.sort(((a, b) => parseInt(a.value, 10) - parseInt(b.value, 10)));
         for (let i = 0; i < points.length; i += 1) {
-            const {point, value} = points[i];
+            const { point, value } = points[i];
             if (base === "window") {
                 if (window.matchMedia(`(min-width: ${value}px)`).matches) breakpoint = point;
             } else if (value <= containerEl.clientWidth) breakpoint = point;
@@ -2369,35 +2369,35 @@
     }
     function addClasses() {
         const swiper = this;
-        const {classNames, params, rtl, el, device} = swiper;
-        const suffixes = prepareClasses([ "initialized", params.direction, {
+        const { classNames, params, rtl, el, device } = swiper;
+        const suffixes = prepareClasses(["initialized", params.direction, {
             "free-mode": swiper.params.freeMode && params.freeMode.enabled
         }, {
-            autoheight: params.autoHeight
-        }, {
-            rtl
-        }, {
-            grid: params.grid && params.grid.rows > 1
-        }, {
-            "grid-column": params.grid && params.grid.rows > 1 && params.grid.fill === "column"
-        }, {
-            android: device.android
-        }, {
-            ios: device.ios
-        }, {
-            "css-mode": params.cssMode
-        }, {
-            centered: params.cssMode && params.centeredSlides
-        }, {
-            "watch-progress": params.watchSlidesProgress
-        } ], params.containerModifierClass);
+                autoheight: params.autoHeight
+            }, {
+                rtl
+            }, {
+                grid: params.grid && params.grid.rows > 1
+            }, {
+                "grid-column": params.grid && params.grid.rows > 1 && params.grid.fill === "column"
+            }, {
+                android: device.android
+            }, {
+                ios: device.ios
+            }, {
+                "css-mode": params.cssMode
+            }, {
+                centered: params.cssMode && params.centeredSlides
+            }, {
+                "watch-progress": params.watchSlidesProgress
+            }], params.containerModifierClass);
         classNames.push(...suffixes);
         el.classList.add(...classNames);
         swiper.emitContainerClasses();
     }
     function removeClasses_removeClasses() {
         const swiper = this;
-        const {el, classNames} = swiper;
+        const { el, classNames } = swiper;
         el.classList.remove(...classNames);
         swiper.emitContainerClasses();
     }
@@ -2407,8 +2407,8 @@
     };
     function checkOverflow() {
         const swiper = this;
-        const {isLocked: wasLocked, params} = swiper;
-        const {slidesOffsetBefore} = params;
+        const { isLocked: wasLocked, params } = swiper;
+        const { slidesOffsetBefore } = params;
         if (slidesOffsetBefore) {
             const lastSlideIndex = swiper.slides.length - 1;
             const lastSlideRightEdge = swiper.slidesGrid[lastSlideIndex] + swiper.slidesSizesGrid[lastSlideIndex] + slidesOffsetBefore * 2;
@@ -2516,7 +2516,7 @@
                 utils_extend(allModulesParams, obj);
                 return;
             }
-            if ([ "navigation", "pagination", "scrollbar" ].indexOf(moduleParamName) >= 0 && params[moduleParamName] === true) params[moduleParamName] = {
+            if (["navigation", "pagination", "scrollbar"].indexOf(moduleParamName) >= 0 && params[moduleParamName] === true) params[moduleParamName] = {
                 auto: true
             };
             if (!(moduleParamName in params && "enabled" in moduleParams)) {
@@ -2551,7 +2551,7 @@
         constructor(...args) {
             let el;
             let params;
-            if (args.length === 1 && args[0].constructor && Object.prototype.toString.call(args[0]).slice(8, -1) === "Object") params = args[0]; else [el, params] = args;
+            if (args.length === 1 && args[0].constructor && Object.prototype.toString.call(args[0]).slice(8, -1) === "Object") params = args[0]; else[el, params] = args;
             if (!params) params = {};
             params = utils_extend({}, params);
             if (el && !params.el) params.el = el;
@@ -2575,7 +2575,7 @@
             swiper.browser = getBrowser();
             swiper.eventsListeners = {};
             swiper.eventsAnyListeners = [];
-            swiper.modules = [ ...swiper.__modules__ ];
+            swiper.modules = [...swiper.__modules__];
             if (params.modules && Array.isArray(params.modules)) swiper.modules.push(...params.modules);
             const allModulesParams = {};
             swiper.modules.forEach((mod => {
@@ -2659,7 +2659,7 @@
             return swiper;
         }
         getSlideIndex(slideEl) {
-            const {slidesEl, params} = this;
+            const { slidesEl, params } = this;
             const slides = utils_elementChildren(slidesEl, `.${params.slideClass}, swiper-slide`);
             const firstSlideIndex = utils_elementIndex(slides[0]);
             return utils_elementIndex(slideEl) - firstSlideIndex;
@@ -2669,7 +2669,7 @@
         }
         recalcSlides() {
             const swiper = this;
-            const {slidesEl, params} = swiper;
+            const { slidesEl, params } = swiper;
             swiper.slides = utils_elementChildren(slidesEl, `.${params.slideClass}, swiper-slide`);
         }
         enable() {
@@ -2723,7 +2723,7 @@
         }
         slidesPerViewDynamic(view = "current", exact = false) {
             const swiper = this;
-            const {params, slides, slidesGrid, slidesSizesGrid, size: swiperSize, activeIndex} = swiper;
+            const { params, slides, slidesGrid, slidesSizesGrid, size: swiperSize, activeIndex } = swiper;
             let spv = 1;
             if (params.centeredSlides) {
                 let slideSize = slides[activeIndex] ? slides[activeIndex].swiperSlideSize : 0;
@@ -2750,9 +2750,9 @@
         update() {
             const swiper = this;
             if (!swiper || swiper.destroyed) return;
-            const {snapGrid, params} = swiper;
+            const { snapGrid, params } = swiper;
             if (params.breakpoints) swiper.setBreakpoint();
-            [ ...swiper.el.querySelectorAll('[loading="lazy"]') ].forEach((imageEl => {
+            [...swiper.el.querySelectorAll('[loading="lazy"]')].forEach((imageEl => {
                 if (imageEl.complete) processLazyPreloader(swiper, imageEl);
             }));
             swiper.updateSize();
@@ -2860,7 +2860,7 @@
             if (swiper.params.loop && swiper.virtual && swiper.params.virtual.enabled) swiper.slideTo(swiper.params.initialSlide + swiper.virtual.slidesBefore, 0, swiper.params.runCallbacksOnInit, false, true); else swiper.slideTo(swiper.params.initialSlide, 0, swiper.params.runCallbacksOnInit, false, true);
             if (swiper.params.loop) swiper.loopCreate();
             swiper.attachEvents();
-            [ ...swiper.el.querySelectorAll('[loading="lazy"]') ].forEach((imageEl => {
+            [...swiper.el.querySelectorAll('[loading="lazy"]')].forEach((imageEl => {
                 if (imageEl.complete) processLazyPreloader(swiper, imageEl); else imageEl.addEventListener("load", (e => {
                     processLazyPreloader(swiper, e.target);
                 }));
@@ -2874,7 +2874,7 @@
         }
         destroy(deleteInstance = true, cleanStyles = true) {
             const swiper = this;
-            const {params, el, wrapperEl, slides} = swiper;
+            const { params, el, wrapperEl, slides } = swiper;
             if (typeof swiper.params === "undefined" || swiper.destroyed) return null;
             swiper.emit("beforeDestroy");
             swiper.initialized = false;
@@ -2929,7 +2929,7 @@
             core_Swiper.prototype[protoMethod] = prototypes[prototypeGroup][protoMethod];
         }));
     }));
-    core_Swiper.use([ Resize, Observer ]);
+    core_Swiper.use([Resize, Observer]);
     const core = core_Swiper;
     function create_element_if_not_defined_createElementIfNotDefined(swiper, originalParams, params, checkProps) {
         if (swiper.params.createElements) Object.keys(checkProps).forEach((key => {
@@ -2946,7 +2946,7 @@
         }));
         return params;
     }
-    function Navigation({swiper, extendParams, on, emit}) {
+    function Navigation({ swiper, extendParams, on, emit }) {
         extendParams({
             navigation: {
                 nextEl: null,
@@ -2963,7 +2963,7 @@
             prevEl: null
         };
         const makeElementsArray = el => {
-            if (!Array.isArray(el)) el = [ el ].filter((e => !!e));
+            if (!Array.isArray(el)) el = [el].filter((e => !!e));
             return el;
         };
         function getEl(el) {
@@ -2973,7 +2973,7 @@
                 if (res) return res;
             }
             if (el) {
-                if (typeof el === "string") res = [ ...document.querySelectorAll(el) ];
+                if (typeof el === "string") res = [...document.querySelectorAll(el)];
                 if (swiper.params.uniqueNavElements && typeof el === "string" && res.length > 1 && swiper.el.querySelectorAll(el).length === 1) res = swiper.el.querySelector(el);
             }
             if (el && !res) return el;
@@ -2991,7 +2991,7 @@
             }));
         }
         function update() {
-            const {nextEl, prevEl} = swiper.navigation;
+            const { nextEl, prevEl } = swiper.navigation;
             if (swiper.params.loop) {
                 toggleEl(prevEl, false);
                 toggleEl(nextEl, false);
@@ -3035,7 +3035,7 @@
             prevEl.forEach((el => initButton(el, "prev")));
         }
         function destroy() {
-            let {nextEl, prevEl} = swiper.navigation;
+            let { nextEl, prevEl } = swiper.navigation;
             nextEl = makeElementsArray(nextEl);
             prevEl = makeElementsArray(prevEl);
             const destroyButton = (el, dir) => {
@@ -3058,13 +3058,13 @@
             destroy();
         }));
         on("enable disable", (() => {
-            let {nextEl, prevEl} = swiper.navigation;
+            let { nextEl, prevEl } = swiper.navigation;
             nextEl = makeElementsArray(nextEl);
             prevEl = makeElementsArray(prevEl);
-            [ ...nextEl, ...prevEl ].filter((el => !!el)).forEach((el => el.classList[swiper.enabled ? "remove" : "add"](swiper.params.navigation.lockClass)));
+            [...nextEl, ...prevEl].filter((el => !!el)).forEach((el => el.classList[swiper.enabled ? "remove" : "add"](swiper.params.navigation.lockClass)));
         }));
         on("click", ((_s, e) => {
-            let {nextEl, prevEl} = swiper.navigation;
+            let { nextEl, prevEl } = swiper.navigation;
             nextEl = makeElementsArray(nextEl);
             prevEl = makeElementsArray(prevEl);
             const targetEl = e.target;
@@ -3073,7 +3073,7 @@
                 let isHidden;
                 if (nextEl.length) isHidden = nextEl[0].classList.contains(swiper.params.navigation.hiddenClass); else if (prevEl.length) isHidden = prevEl[0].classList.contains(swiper.params.navigation.hiddenClass);
                 if (isHidden === true) emit("navigationShow"); else emit("navigationHide");
-                [ ...nextEl, ...prevEl ].filter((el => !!el)).forEach((el => el.classList.toggle(swiper.params.navigation.hiddenClass)));
+                [...nextEl, ...prevEl].filter((el => !!el)).forEach((el => el.classList.toggle(swiper.params.navigation.hiddenClass)));
             }
         }));
         const enable = () => {
@@ -3096,7 +3096,7 @@
     function classes_to_selector_classesToSelector(classes = "") {
         return `.${classes.trim().replace(/([\.:!+\/])/g, "\\$1").replace(/ /g, ".")}`;
     }
-    function Pagination({swiper, extendParams, on, emit}) {
+    function Pagination({ swiper, extendParams, on, emit }) {
         const pfx = "swiper-pagination";
         extendParams({
             pagination: {
@@ -3136,14 +3136,14 @@
         let bulletSize;
         let dynamicBulletIndex = 0;
         const makeElementsArray = el => {
-            if (!Array.isArray(el)) el = [ el ].filter((e => !!e));
+            if (!Array.isArray(el)) el = [el].filter((e => !!e));
             return el;
         };
         function isPaginationDisabled() {
             return !swiper.params.pagination.el || !swiper.pagination.el || Array.isArray(swiper.pagination.el) && swiper.pagination.el.length === 0;
         }
         function setSideBullets(bulletEl, position) {
-            const {bulletActiveClass} = swiper.params.pagination;
+            const { bulletActiveClass } = swiper.params.pagination;
             if (!bulletEl) return;
             bulletEl = bulletEl[`${position === "prev" ? "previous" : "next"}ElementSibling`];
             if (bulletEl) {
@@ -3208,7 +3208,7 @@
                     midIndex = (lastIndex + firstIndex) / 2;
                 }
                 bullets.forEach((bulletEl => {
-                    const classesToRemove = [ ...[ "", "-next", "-next-next", "-prev", "-prev-prev", "-main" ].map((suffix => `${params.bulletActiveClass}${suffix}`)) ].map((s => typeof s === "string" && s.includes(" ") ? s.split(" ") : s)).flat();
+                    const classesToRemove = [...["", "-next", "-next-next", "-prev", "-prev-prev", "-main"].map((suffix => `${params.bulletActiveClass}${suffix}`))].map((s => typeof s === "string" && s.includes(" ") ? s.split(" ") : s)).flat();
                     bulletEl.classList.remove(...classesToRemove);
                 }));
                 if (el.length > 1) bullets.forEach((bullet => {
@@ -3302,11 +3302,11 @@
             if (!params.el) return;
             let el;
             if (typeof params.el === "string" && swiper.isElement) el = swiper.el.shadowRoot.querySelector(params.el);
-            if (!el && typeof params.el === "string") el = [ ...document.querySelectorAll(params.el) ];
+            if (!el && typeof params.el === "string") el = [...document.querySelectorAll(params.el)];
             if (!el) el = params.el;
             if (!el || el.length === 0) return;
             if (swiper.params.uniqueNavElements && typeof params.el === "string" && Array.isArray(el) && el.length > 1) {
-                el = [ ...swiper.el.querySelectorAll(params.el) ];
+                el = [...swiper.el.querySelectorAll(params.el)];
                 if (el.length > 1) el = el.filter((subEl => {
                     if (utils_elementParents(subEl, ".swiper")[0] !== swiper.el) return false;
                     return true;
@@ -3349,7 +3349,7 @@
         on("changeDirection", (() => {
             if (!swiper.pagination || !swiper.pagination.el) return;
             const params = swiper.params.pagination;
-            let {el} = swiper.pagination;
+            let { el } = swiper.pagination;
             el = makeElementsArray(el);
             el.forEach((subEl => {
                 subEl.classList.remove(params.horizontalClass, params.verticalClass);
@@ -3377,7 +3377,7 @@
             destroy();
         }));
         on("enable disable", (() => {
-            let {el} = swiper.pagination;
+            let { el } = swiper.pagination;
             if (el) {
                 el = makeElementsArray(el);
                 el.forEach((subEl => subEl.classList[swiper.enabled ? "remove" : "add"](swiper.params.pagination.lockClass)));
@@ -3388,8 +3388,8 @@
         }));
         on("click", ((_s, e) => {
             const targetEl = e.target;
-            let {el} = swiper.pagination;
-            if (!Array.isArray(el)) el = [ el ].filter((element => !!element));
+            let { el } = swiper.pagination;
+            if (!Array.isArray(el)) el = [el].filter((element => !!element));
             if (swiper.params.pagination.el && swiper.params.pagination.hideOnClick && el && el.length > 0 && !targetEl.classList.contains(swiper.params.pagination.bulletClass)) {
                 if (swiper.navigation && (swiper.navigation.nextEl && targetEl === swiper.navigation.nextEl || swiper.navigation.prevEl && targetEl === swiper.navigation.prevEl)) return;
                 const isHidden = el[0].classList.contains(swiper.params.pagination.hiddenClass);
@@ -3399,7 +3399,7 @@
         }));
         const enable = () => {
             swiper.el.classList.remove(swiper.params.pagination.paginationDisabledClass);
-            let {el} = swiper.pagination;
+            let { el } = swiper.pagination;
             if (el) {
                 el = makeElementsArray(el);
                 el.forEach((subEl => subEl.classList.remove(swiper.params.pagination.paginationDisabledClass)));
@@ -3410,7 +3410,7 @@
         };
         const disable = () => {
             swiper.el.classList.add(swiper.params.pagination.paginationDisabledClass);
-            let {el} = swiper.pagination;
+            let { el } = swiper.pagination;
             if (el) {
                 el = makeElementsArray(el);
                 el.forEach((subEl => subEl.classList.add(swiper.params.pagination.paginationDisabledClass)));
@@ -3428,7 +3428,7 @@
     }
     function initSliders() {
         if (document.querySelector(".team-page__slider")) new core(".team-page__slider", {
-            modules: [ Navigation ],
+            modules: [Navigation],
             observer: true,
             observeParents: true,
             slidesPerView: 4,
@@ -3460,7 +3460,7 @@
             on: {}
         });
         if (document.querySelector(".students-page__slider")) new core(".students-page__slider", {
-            modules: [ Navigation, Pagination ],
+            modules: [Navigation, Pagination],
             observer: true,
             observeParents: true,
             slidesPerView: 1,
@@ -3479,7 +3479,7 @@
             on: {}
         });
         if (document.querySelector(".other-course__slider")) new core(".other-course__slider", {
-            modules: [ Navigation ],
+            modules: [Navigation],
             observer: true,
             observeParents: true,
             slidesPerView: 1,
@@ -3510,7 +3510,7 @@
             on: {}
         });
     }
-    window.addEventListener("load", (function(e) {
+    window.addEventListener("load", (function (e) {
         initSliders();
     }));
     let addWindowScrollEvent = false;
@@ -3555,7 +3555,7 @@
     setTimeout((() => {
         if (addWindowScrollEvent) {
             let windowScroll = new Event("windowScroll");
-            window.addEventListener("scroll", (function(e) {
+            window.addEventListener("scroll", (function (e) {
                 document.dispatchEvent(windowScroll);
             }));
         }
@@ -3563,7 +3563,7 @@
     function DynamicAdapt(type) {
         this.type = type;
     }
-    DynamicAdapt.prototype.init = function() {
+    DynamicAdapt.prototype.init = function () {
         const _this = this;
         this.оbjects = [];
         this.daClassname = "_dynamic_adapt_";
@@ -3582,10 +3582,10 @@
             this.оbjects.push(оbject);
         }
         this.arraySort(this.оbjects);
-        this.mediaQueries = Array.prototype.map.call(this.оbjects, (function(item) {
+        this.mediaQueries = Array.prototype.map.call(this.оbjects, (function (item) {
             return "(" + this.type + "-width: " + item.breakpoint + "px)," + item.breakpoint;
         }), this);
-        this.mediaQueries = Array.prototype.filter.call(this.mediaQueries, (function(item, index, self) {
+        this.mediaQueries = Array.prototype.filter.call(this.mediaQueries, (function (item, index, self) {
             return Array.prototype.indexOf.call(self, item) === index;
         }));
         for (let i = 0; i < this.mediaQueries.length; i++) {
@@ -3593,16 +3593,16 @@
             const mediaSplit = String.prototype.split.call(media, ",");
             const matchMedia = window.matchMedia(mediaSplit[0]);
             const mediaBreakpoint = mediaSplit[1];
-            const оbjectsFilter = Array.prototype.filter.call(this.оbjects, (function(item) {
+            const оbjectsFilter = Array.prototype.filter.call(this.оbjects, (function (item) {
                 return item.breakpoint === mediaBreakpoint;
             }));
-            matchMedia.addListener((function() {
+            matchMedia.addListener((function () {
                 _this.mediaHandler(matchMedia, оbjectsFilter);
             }));
             this.mediaHandler(matchMedia, оbjectsFilter);
         }
     };
-    DynamicAdapt.prototype.mediaHandler = function(matchMedia, оbjects) {
+    DynamicAdapt.prototype.mediaHandler = function (matchMedia, оbjects) {
         if (matchMedia.matches) for (let i = 0; i < оbjects.length; i++) {
             const оbject = оbjects[i];
             оbject.index = this.indexInParent(оbject.parent, оbject.element);
@@ -3612,7 +3612,7 @@
             if (оbject.element.classList.contains(this.daClassname)) this.moveBack(оbject.parent, оbject.element, оbject.index);
         }
     };
-    DynamicAdapt.prototype.moveTo = function(place, element, destination) {
+    DynamicAdapt.prototype.moveTo = function (place, element, destination) {
         element.classList.add(this.daClassname);
         if (place === "last" || place >= destination.children.length) {
             destination.insertAdjacentElement("beforeend", element);
@@ -3624,16 +3624,16 @@
         }
         destination.children[place].insertAdjacentElement("beforebegin", element);
     };
-    DynamicAdapt.prototype.moveBack = function(parent, element, index) {
+    DynamicAdapt.prototype.moveBack = function (parent, element, index) {
         element.classList.remove(this.daClassname);
         if (parent.children[index] !== void 0) parent.children[index].insertAdjacentElement("beforebegin", element); else parent.insertAdjacentElement("beforeend", element);
     };
-    DynamicAdapt.prototype.indexInParent = function(parent, element) {
+    DynamicAdapt.prototype.indexInParent = function (parent, element) {
         const array = Array.prototype.slice.call(parent.children);
         return Array.prototype.indexOf.call(array, element);
     };
-    DynamicAdapt.prototype.arraySort = function(arr) {
-        if (this.type === "min") Array.prototype.sort.call(arr, (function(a, b) {
+    DynamicAdapt.prototype.arraySort = function (arr) {
+        if (this.type === "min") Array.prototype.sort.call(arr, (function (a, b) {
             if (a.breakpoint === b.breakpoint) {
                 if (a.place === b.place) return 0;
                 if (a.place === "first" || b.place === "last") return -1;
@@ -3642,7 +3642,7 @@
             }
             return a.breakpoint - b.breakpoint;
         })); else {
-            Array.prototype.sort.call(arr, (function(a, b) {
+            Array.prototype.sort.call(arr, (function (a, b) {
                 if (a.breakpoint === b.breakpoint) {
                     if (a.place === b.place) return 0;
                     if (a.place === "first" || b.place === "last") return 1;
@@ -3738,7 +3738,7 @@
     }));
     if (window.location.href.includes("courses.html")) {
         let courses = {
-            course: [ {
+            course: [{
                 id: 1,
                 courseName: "The Ultimate Google Ads Training Course",
                 category: "Marketing",
@@ -3858,7 +3858,7 @@
                 price: "500",
                 image: "img/courses/filter/09.jpg",
                 creator: "by Cody Fisher"
-            } ]
+            }]
         };
         class cardCourse {
             constructor(id, courseName, category, categoryBackground, price, image, creator, parentSelector, ...classes) {
@@ -3878,7 +3878,7 @@
                     element.setAttribute("data-card", `${this.id}`);
                     element.classList.add(`courses__card`);
                     element.classList.add(`${this.category.replace(/\s+/g, "")}`);
-                } else this.classes.forEach((function(className) {
+                } else this.classes.forEach((function (className) {
                     element.classList.add(className);
                 }));
                 element.innerHTML = `\n            <a href="#" class="courses__card-cover">          \n                <div class=" courses__card-image">\n                    <img src="${this.image}" alt="" class="courses__card-img">\n                </div>\n                <div class="courses__card-body">\n                    <div style="background: #${this.categoryBackground};"  class="item-featured-courses-page__label">${this.category}</div> \n                    <h3 class="item-featured-courses-page__title product-name">${this.courseName}</h3>\n                    <div class="item-featured-courses-page__price"><span>$${this.price}</span> | ${this.creator}</div>\n                </div>\n            </a>\n        `;
@@ -3891,7 +3891,7 @@
         function createCard(num, loop = 3) {
             num -= 3;
             if (num <= courses.course.length - 3) for (let i = 0; i < loop; i++) {
-                const {id, courseName, category, categoryBackground, price, image, creator} = courses.course[num++];
+                const { id, courseName, category, categoryBackground, price, image, creator } = courses.course[num++];
                 new cardCourse(id, courseName, category, categoryBackground, price, image, creator, ".courses__cards").render();
             }
             if (num + 3 == courses.course.length + 3) loadMoreCover.style.display = "none";
@@ -3976,7 +3976,7 @@
         cards = document.querySelectorAll(".courses__card");
         cards.forEach((card => {
             card.addEventListener("click", (() => {
-                window.location.href = `http://dav1dashka.github.io/Online-course/course.html?id=${card.getAttribute("data-card")}`;
+                window.location.href = `http://dav1dashka.github.io/Online-courses/course.html?id=${card.getAttribute("data-card")}`;
             }));
         }));
     }
@@ -3985,11 +3985,11 @@
     if (window.location.href.includes("course.html")) {
         window.addEventListener("load", (() => {
             let coursesPages = {
-                coursePage: [ {
+                coursePage: [{
                     id: 1,
                     titlesPageTitle: "The Ultimate Google Ads Training Course",
                     aboutCourseText: "entesque euismod in faucibus at elementum. Tellus maecenas libero est tempus sit st non hac dignissim montes, pretium, egestas molestie. Sed magna aliquet ornare nibh vel lectus diam eget pretium. Lorem risus nunc tincidunt tortor, mi nulla pellentesque",
-                    aboutCourseItems: [ "A fermentum in morbi pretium aliquam adipiscing donec tempus.", "Vulputate placerat amet pulvinar lorem nisl.", "Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.", "Etiam duis lobortis in fames ultrices commodo nibh.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at." ],
+                    aboutCourseItems: ["A fermentum in morbi pretium aliquam adipiscing donec tempus.", "Vulputate placerat amet pulvinar lorem nisl.", "Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.", "Etiam duis lobortis in fames ultrices commodo nibh.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at."],
                     aboutCourseDates: "May 20 – Nov 29",
                     aboutCourseDatesLabel: "Metus turpis sit lorem lacus, in elit tellus lacus.",
                     aboutCourseDuration: "2 months – 8 lessons",
@@ -3999,19 +3999,19 @@
                     curatorCourseImage: "img/course/09.png",
                     curatorCourseTitle: "Jerome Bell",
                     curatorCoursePosition: "Marketolog in IT Product Company",
-                    curatorCourseInfoIcon: [ "_icon-star", "_icon-Play", "_icon-Profile" ],
-                    curatorCourseInfo: [ "4.3 rate", "14 courses", "850 students" ],
+                    curatorCourseInfoIcon: ["_icon-star", "_icon-Play", "_icon-Profile"],
+                    curatorCourseInfo: ["4.3 rate", "14 courses", "850 students"],
                     curatorCourseText: "Mattis adipiscing aliquam eu proin metus a iaculis faucibus. Tempus curabitur venenatis, vulputate venenatis fermentum ante at massa sed pharetra. Ac commodo platea id habitasse proin. Nullam sit nec ipsum posuere non. Nam vel aliquam tristique sollicitudin interdum quam. ",
-                    curatorCourseLinksIcon: [ "_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In" ],
-                    curatorCourseLinks: [ "#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id" ],
-                    courseWhomItems: [ "Specialists with more than 1 year of active work experience", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps" ],
-                    courseProgramTitles: [ "Aliquet lectus urna viverra in odio.", "Orci commodo, viverra orci mollis ut euismod.", "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi." ],
-                    courseProgramTextes: [ "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id." ]
+                    curatorCourseLinksIcon: ["_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In"],
+                    curatorCourseLinks: ["#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id"],
+                    courseWhomItems: ["Specialists with more than 1 year of active work experience", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps"],
+                    courseProgramTitles: ["Aliquet lectus urna viverra in odio.", "Orci commodo, viverra orci mollis ut euismod.", "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi."],
+                    courseProgramTextes: ["Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id."]
                 }, {
                     id: 2,
                     titlesPageTitle: "Product Management Fundamentals",
                     aboutCourseText: " Sed magna aliquet ornare nibh vel lectus diam eget pretium. Lorem risus nunc tincidunt tortor, mi nulla pellentesque",
-                    aboutCourseItems: [ "A fermentum in morbi pretium aliquam adipiscing donec tempus.", "Vulputate placerat amet pulvinar lorem nisl.", "Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.", "Etiam duis lobortis in fames ultrices commodo nibh.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at.", "Etiam duis lobortis in fames ultrices commodo nibh.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at." ],
+                    aboutCourseItems: ["A fermentum in morbi pretium aliquam adipiscing donec tempus.", "Vulputate placerat amet pulvinar lorem nisl.", "Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.", "Etiam duis lobortis in fames ultrices commodo nibh.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at.", "Etiam duis lobortis in fames ultrices commodo nibh.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at."],
                     aboutCourseDates: "May 22 – Nov 22",
                     aboutCourseDatesLabel: "Metus turpisllus lacus.",
                     aboutCourseDuration: "5 months – 20 lessons",
@@ -4021,19 +4021,19 @@
                     curatorCourseImage: "img/course/09.png",
                     curatorCourseTitle: "Marvin McKinney",
                     curatorCoursePosition: "PM in IT Product Company",
-                    curatorCourseInfoIcon: [ "_icon-star", "_icon-Play", "_icon-Profile" ],
-                    curatorCourseInfo: [ "5 rate", "2 courses", "50 students" ],
+                    curatorCourseInfoIcon: ["_icon-star", "_icon-Play", "_icon-Profile"],
+                    curatorCourseInfo: ["5 rate", "2 courses", "50 students"],
                     curatorCourseText: "Mattis adiplputate molestie laoreet at massa sed pharetra. Ac commodo platea id habitasse proin. Nullam sit nec ipsum posuere non. Nam vel aliquam tristique sollicitudin interdum quam. ",
-                    curatorCourseLinksIcon: [ "_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In" ],
-                    curatorCourseLinks: [ "#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id" ],
-                    courseWhomItems: [ "Mobile app designers who want to improve their skills in solving business problems, creating and testing human-centered interfaces", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps" ],
-                    courseProgramTitles: [ "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi.", "Amet nec in pellentesque.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id." ],
-                    courseProgramTextes: [ "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. ", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi " ]
+                    curatorCourseLinksIcon: ["_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In"],
+                    curatorCourseLinks: ["#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id"],
+                    courseWhomItems: ["Mobile app designers who want to improve their skills in solving business problems, creating and testing human-centered interfaces", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps"],
+                    courseProgramTitles: ["Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi.", "Amet nec in pellentesque.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id."],
+                    courseProgramTextes: ["honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. ", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi "]
                 }, {
                     id: 3,
                     titlesPageTitle: "HR  Management and Analytics",
                     aboutCourseText: "entesque euismod in faucibus at elementum. Tellus maecenas libero est tempus sit st non hac dignissim montes, pretium, egestas molestie. ",
-                    aboutCourseItems: [ "A fermentum in morbi pretium aliquam adipiscing donec tempus.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at." ],
+                    aboutCourseItems: ["A fermentum in morbi pretium aliquam adipiscing donec tempus.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at."],
                     aboutCourseDates: "Jun 10 – Dec 09",
                     aboutCourseDatesLabel: "Metus turpis sit lorem lacus, in elit tellus lacus.",
                     aboutCourseDuration: "3 months – 12 lessons",
@@ -4043,19 +4043,19 @@
                     curatorCourseImage: "img/course/09.png",
                     curatorCourseTitle: "Leslie Alexander Li",
                     curatorCoursePosition: "Senior HR in IT Product Company",
-                    curatorCourseInfoIcon: [ "_icon-star", "_icon-Play", "_icon-Profile" ],
-                    curatorCourseInfo: [ "4.9 rate", "4 courses", "350 students" ],
+                    curatorCourseInfoIcon: ["_icon-star", "_icon-Play", "_icon-Profile"],
+                    curatorCourseInfo: ["4.9 rate", "4 courses", "350 students"],
                     curatorCourseText: "Mattis adipiscing aliquam eu proin metus a iaculis faucibus. Tempus curabitur venenatis, vulputate venenatis fermentum ante. Nisl, amet id semper semper quis commodo, consequat. Massa rhoncus sit morbi odio. Sit maecenas nibh consectetur vel diam. Sem vulputate molestie laoreet at massa sed pharetra. Ac commodo platea id habitasse proin. Nullam sit nec ipsum posuere non. Nam vel aliquam tristique sollicitudin interdum quam. ",
-                    curatorCourseLinksIcon: [ "_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In" ],
-                    curatorCourseLinks: [ "#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id" ],
-                    courseWhomItems: [ "Specialists with more than 1 year of active work experience", "Mobile app designers who want to improve their skills in solving business problems, creating and testing human-centered interfaces", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps" ],
-                    courseProgramTitles: [ "Aliquet lectus urna viverra in odio.", "Orci commodo, viverra orci mollis ut euismod.", "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi.", "Amet nec in pellentesque.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id." ],
-                    courseProgramTextes: [ "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. ", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi " ]
+                    curatorCourseLinksIcon: ["_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In"],
+                    curatorCourseLinks: ["#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id"],
+                    courseWhomItems: ["Specialists with more than 1 year of active work experience", "Mobile app designers who want to improve their skills in solving business problems, creating and testing human-centered interfaces", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps"],
+                    courseProgramTitles: ["Aliquet lectus urna viverra in odio.", "Orci commodo, viverra orci mollis ut euismod.", "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi.", "Amet nec in pellentesque.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id."],
+                    courseProgramTextes: ["Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. ", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi "]
                 }, {
                     id: 4,
                     titlesPageTitle: "Brand Management & PR Communications",
                     aboutCourseText: "lorem lorem entesque euismod in faucibus at elementum. Tellus maecenas libero est tempus sit st non hac dignissim montes, pretium, egestas molestie. Sed magna aliquet ornare nibh vel lectus diam eget pretium. Lorem risus nunc tincidunt tortor, mi nulla pellentesque",
-                    aboutCourseItems: [ "A fermentum in morbi pretium aliquam adipiscing donec tempus.", "Vulputate placerat amet pulvinar lorem nisl.", "Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.", "Etiam duis lobortis in fames ultrices commodo nibh." ],
+                    aboutCourseItems: ["A fermentum in morbi pretium aliquam adipiscing donec tempus.", "Vulputate placerat amet pulvinar lorem nisl.", "Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.", "Etiam duis lobortis in fames ultrices commodo nibh."],
                     aboutCourseDates: "Jul 15 – Jan 14",
                     aboutCourseDatesLabel: "Metus turpis sit lorem lacus, in elit tellus lacus.",
                     aboutCourseDuration: "4 months – 16 lessons",
@@ -4065,19 +4065,19 @@
                     curatorCourseImage: "img/course/09.png",
                     curatorCourseTitle: "Kristin Watson",
                     curatorCoursePosition: "Senior PR in IT Product Company",
-                    curatorCourseInfoIcon: [ "_icon-star", "_icon-Play", "_icon-Profile" ],
-                    curatorCourseInfo: [ "4.3 rate", "14 courses", "250 students" ],
+                    curatorCourseInfoIcon: ["_icon-star", "_icon-Play", "_icon-Profile"],
+                    curatorCourseInfo: ["4.3 rate", "14 courses", "250 students"],
                     curatorCourseText: "Mattis adipiscing aliquam eu proin metus a iaculis faucibus. Tempus curabitur venenatis, vulputate maecenas nibh consectetur vel diam. Sem vulputate molestie laoreet at massa sed pharetra. Ac commodo platea id habitasse proin. Nullam sit nec ipsum posuere non. Nam vel aliquam tristique sollicitudin interdum quam. ",
-                    curatorCourseLinksIcon: [ "_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In" ],
-                    curatorCourseLinks: [ "#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id" ],
-                    courseWhomItems: [ "Specialists with more than 1 year of active work experience", "Mobile app designers who want to improve their skills in solving business problems, creating and testing human-centered interfaces", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps" ],
-                    courseProgramTitles: [ "Aliquet lectus urna viverra in odio.", "Amet nec in pellentesque.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id." ],
-                    courseProgramTextes: [ "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi " ]
+                    curatorCourseLinksIcon: ["_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In"],
+                    curatorCourseLinks: ["#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id"],
+                    courseWhomItems: ["Specialists with more than 1 year of active work experience", "Mobile app designers who want to improve their skills in solving business problems, creating and testing human-centered interfaces", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps"],
+                    courseProgramTitles: ["Aliquet lectus urna viverra in odio.", "Amet nec in pellentesque.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id."],
+                    courseProgramTextes: ["Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi "]
                 }, {
                     id: 5,
                     titlesPageTitle: "Graphic Design Basic",
                     aboutCourseText: "et pulvinar st non hac dignissim montes, pretium, egestas molestie. Sed magna aliquet ornare nibh vel lectus diam eget pretium. Lorem risus nunc tincidunt tortor, mi nulla pellentesque",
-                    aboutCourseItems: [ "A fermentum in morbi pretium aliquam adipiscing donec tempus.", "Vulputate placerat amet pulvinar lorem nisl.", "Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.", "Etiam duis lobortis in fames ultrices commodo nibh.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at." ],
+                    aboutCourseItems: ["A fermentum in morbi pretium aliquam adipiscing donec tempus.", "Vulputate placerat amet pulvinar lorem nisl.", "Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.", "Etiam duis lobortis in fames ultrices commodo nibh.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at."],
                     aboutCourseDates: "Aug 05 – Feb 04",
                     aboutCourseDatesLabel: "Metus turpis sit lorem lacus, in elit tellus lacus.",
                     aboutCourseDuration: "6 months – 24 lessons",
@@ -4087,19 +4087,19 @@
                     curatorCourseImage: "img/course/09.png",
                     curatorCourseTitle: "Guy Hawkins",
                     curatorCoursePosition: "Senior UX designer in IT Product Company",
-                    curatorCourseInfoIcon: [ "_icon-star", "_icon-Play", "_icon-Profile" ],
-                    curatorCourseInfo: [ "4.5 rate", "7 courses", "520 students" ],
+                    curatorCourseInfoIcon: ["_icon-star", "_icon-Play", "_icon-Profile"],
+                    curatorCourseInfo: ["4.5 rate", "7 courses", "520 students"],
                     curatorCourseText: "Mattis adipiscing aliquam eu proin metus a iaculis faucibus. Tempus curabitur venenatis, vulputate venenatis fermentum ante. Nisl, amet id semper semper quis commodo, consequat. Massa rhoncus sit morbi odio. Sit maecenas nibh consectetur vel diam. Sem vulputate molestie laoreet at massa sed pharetra. Ac commodo platea id habitasse proin. Nullam sit nec ipsum posuere non. Nam vel aliquam tristique sollicitudin interdum quam. ",
-                    curatorCourseLinksIcon: [ "_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In" ],
-                    curatorCourseLinks: [ "#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id" ],
-                    courseWhomItems: [ "Specialists with more than 1 year of active work experience", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps" ],
-                    courseProgramTitles: [ "Aliquet lectus urna viverra in odio.", "Orci commodo, viverra orci mollis ut euismod.", "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id." ],
-                    courseProgramTextes: [ "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. ", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi " ]
+                    curatorCourseLinksIcon: ["_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In"],
+                    curatorCourseLinks: ["#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id"],
+                    courseWhomItems: ["Specialists with more than 1 year of active work experience", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps"],
+                    courseProgramTitles: ["Aliquet lectus urna viverra in odio.", "Orci commodo, viverra orci mollis ut euismod.", "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id."],
+                    courseProgramTextes: ["Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. ", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi "]
                 }, {
                     id: 6,
                     titlesPageTitle: "Business Development Management",
                     aboutCourseText: "Tellus maecenas libero est tempus sit st non hac dignissim montes, pretium, egestas molestie. Sed magna aliquet ornare nibh vel lectus diam eget pretium. Lorem risus nunc tincidunt tortor, mi nulla pellentesque",
-                    aboutCourseItems: [ "A fermentum in morbi pretium aliquam adipiscing donec tempus.", "Vulputate placerat amet pulvinar lorem nisl.", "Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.", "Etiam duis lobortis in fames ultrices commodo nibh.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at." ],
+                    aboutCourseItems: ["A fermentum in morbi pretium aliquam adipiscing donec tempus.", "Vulputate placerat amet pulvinar lorem nisl.", "Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.", "Etiam duis lobortis in fames ultrices commodo nibh.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at."],
                     aboutCourseDates: "Sep 25 – Mar 24",
                     aboutCourseDatesLabel: "Metus turpis sit lorem lacus, in elit tellus lacus.",
                     aboutCourseDuration: "7 months – 28 lessons",
@@ -4109,19 +4109,19 @@
                     curatorCourseImage: "img/course/09.png",
                     curatorCourseTitle: "Dianne Russell",
                     curatorCoursePosition: "Senior UX designer in IT Product Company",
-                    curatorCourseInfoIcon: [ "_icon-star", "_icon-Play", "_icon-Profile" ],
-                    curatorCourseInfo: [ "4.9 rate", "4 courses", "350 students" ],
+                    curatorCourseInfoIcon: ["_icon-star", "_icon-Play", "_icon-Profile"],
+                    curatorCourseInfo: ["4.9 rate", "4 courses", "350 students"],
                     curatorCourseText: "Mattis adipiscing aliquam eu proin metus a iaculis faucibus. Tempus curabitur venenatis, vulputate venenatis fermentum ante. Nisl, amet id semper semper quis commodo, consequat. Massa rhoncus sit morbi odio. Sit maecenas nibh consectetur vel diam. Sem vulputate molestie laoreet at massa sed pharetra. Ac commodo platea id habitasse proin. Nullam sit nec ipsum posuere non. Nam vel aliquam tristique sollicitudin interdum quam. ",
-                    curatorCourseLinksIcon: [ "_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In" ],
-                    curatorCourseLinks: [ "#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id" ],
-                    courseWhomItems: [ "Specialists with more than 1 year of active work experience", "Mobile app designers who want to improve their skills in solving business problems, creating and testing human-centered interfaces", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps" ],
-                    courseProgramTitles: [ "Aliquet lectus urna viverra in odio.", "Orci commodo, viverra orci mollis ut euismod.", "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi.", "Amet nec in pellentesque.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id." ],
-                    courseProgramTextes: [ "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. ", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi " ]
+                    curatorCourseLinksIcon: ["_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In"],
+                    curatorCourseLinks: ["#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id"],
+                    courseWhomItems: ["Specialists with more than 1 year of active work experience", "Mobile app designers who want to improve their skills in solving business problems, creating and testing human-centered interfaces", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps"],
+                    courseProgramTitles: ["Aliquet lectus urna viverra in odio.", "Orci commodo, viverra orci mollis ut euismod.", "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi.", "Amet nec in pellentesque.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id."],
+                    courseProgramTextes: ["Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. ", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi "]
                 }, {
                     id: 7,
                     titlesPageTitle: "Highload Software Architecture",
                     aboutCourseText: "Bibendum vulputate adipiscing venenatis at est, a eu tincidunt. Leo aenean congue in sagittis, felis maecenas amet varius at. Pellentesque euismod in faucibus at elementum. Tellus maecenas libero est tempus sit cras at malesuada diam. Consequat senectus dictumst non hac dignissim montes, pretium, egestas molestie. Sed magna aliquet ornare nibh vel lectus diam eget pretium. Lorem risus nunc tincidunt tortor, mi nulla pellentesque",
-                    aboutCourseItems: [ "A fermentum in morbi pretium aliquam adipiscing donec tempus.", "Vulputate placerat amet pulvinar lorem nisl.", "Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.", "Etiam duis lobortis in fames ultrices commodo nibh.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at." ],
+                    aboutCourseItems: ["A fermentum in morbi pretium aliquam adipiscing donec tempus.", "Vulputate placerat amet pulvinar lorem nisl.", "Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.", "Etiam duis lobortis in fames ultrices commodo nibh.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at."],
                     aboutCourseDates: "Oct 18 – Apr 17",
                     aboutCourseDatesLabel: "Metus turpis sit lorem lacus, in elit tellus lacus.",
                     aboutCourseDuration: "9 months – 36 lessons",
@@ -4131,19 +4131,19 @@
                     curatorCourseImage: "img/course/09.png",
                     curatorCourseTitle: "Brooklyn Simmons",
                     curatorCoursePosition: "Senior UX designer in IT Product Company",
-                    curatorCourseInfoIcon: [ "_icon-star", "_icon-Play", "_icon-Profile" ],
-                    curatorCourseInfo: [ "4.9 rate", "4 courses", "350 students" ],
+                    curatorCourseInfoIcon: ["_icon-star", "_icon-Play", "_icon-Profile"],
+                    curatorCourseInfo: ["4.9 rate", "4 courses", "350 students"],
                     curatorCourseText: "Mattis adipiscing aliquam eu proin metus a iaculis faucibus. Tempus curabitur venenatis, vulputate venenatis fermentum ante. Nisl, amet id semper semper quis commodo, consequat. Massa rhoncus sit morbi odio. Sit maecenas nibh consectetur vel diam. Sem vulputate molestie laoreet at massa sed pharetra. Ac commodo platea id habitasse proin. Nullam sit nec ipsum posuere non. Nam vel aliquam tristique sollicitudin interdum quam. ",
-                    curatorCourseLinksIcon: [ "_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In" ],
-                    curatorCourseLinks: [ "#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id" ],
-                    courseWhomItems: [ "Specialists with more than 1 year of active work experience", "Mobile app designers who want to improve their skills in solving business problems, creating and testing human-centered interfaces", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps" ],
-                    courseProgramTitles: [ "Aliquet lectus urna viverra in odio.", "Orci commodo, viverra orci mollis ut euismod.", "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi.", "Amet nec in pellentesque.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id." ],
-                    courseProgramTextes: [ "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. ", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi " ]
+                    curatorCourseLinksIcon: ["_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In"],
+                    curatorCourseLinks: ["#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id"],
+                    courseWhomItems: ["Specialists with more than 1 year of active work experience", "Mobile app designers who want to improve their skills in solving business problems, creating and testing human-centered interfaces", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps"],
+                    courseProgramTitles: ["Aliquet lectus urna viverra in odio.", "Orci commodo, viverra orci mollis ut euismod.", "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi.", "Amet nec in pellentesque.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id."],
+                    courseProgramTextes: ["Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. ", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi "]
                 }, {
                     id: 8,
                     titlesPageTitle: "Human Resources – Selection and Recruitment",
                     aboutCourseText: "Bibendum vulputate adipiscing venenatis at est, a eu tincidunt. Leo aenean congue in sagittis, felis maecenas amet varius at.",
-                    aboutCourseItems: [ "A fermentum in morbi pretium aliquam adipiscing donec tempus.", "Vulputate placerat amet pulvinar lorem nisl." ],
+                    aboutCourseItems: ["A fermentum in morbi pretium aliquam adipiscing donec tempus.", "Vulputate placerat amet pulvinar lorem nisl."],
                     aboutCourseDates: "Nov 12 – May 11",
                     aboutCourseDatesLabel: "Metus turpis sit lorem lacus, in elit tellus lacus.",
                     aboutCourseDuration: "1 month – 4 lessons",
@@ -4153,19 +4153,19 @@
                     curatorCourseImage: "img/course/09.png",
                     curatorCourseTitle: "Kathryn Murphy",
                     curatorCoursePosition: "Senior UX designer in IT Product Company",
-                    curatorCourseInfoIcon: [ "_icon-star", "_icon-Play", "_icon-Profile" ],
-                    curatorCourseInfo: [ "4.9 rate", "4 courses", "350 students" ],
+                    curatorCourseInfoIcon: ["_icon-star", "_icon-Play", "_icon-Profile"],
+                    curatorCourseInfo: ["4.9 rate", "4 courses", "350 students"],
                     curatorCourseText: "Mattis adipiscing aliquam eu proin metus a iaculis faucibus. Tempus curabitur venenatis, vulputate venenatis fermentum ante. Nisl, amet id semper semper quis commodo, consequat. Massa rhoncus sit morbi odio. Sit maecenas nibh consectetur vel diam. Sem vulputate molestie laoreet at massa sed pharetra. Ac commodo platea id habitasse proin. Nullam sit nec ipsum posuere non. Nam vel aliquam tristique sollicitudin interdum quam. ",
-                    curatorCourseLinksIcon: [ "_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In" ],
-                    curatorCourseLinks: [ "#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id" ],
-                    courseWhomItems: [ "Specialists with more than 1 year of active work experience", "Mobile app designers who want to improve their skills in solving business problems, creating and testing human-centered interfaces", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps" ],
-                    courseProgramTitles: [ "Aliquet lectus urna viverra in odio.", "Orci commodo, viverra orci mollis ut euismod.", "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi.", "Amet nec in pellentesque.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id." ],
-                    courseProgramTextes: [ "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. ", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi " ]
+                    curatorCourseLinksIcon: ["_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In"],
+                    curatorCourseLinks: ["#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id"],
+                    courseWhomItems: ["Specialists with more than 1 year of active work experience", "Mobile app designers who want to improve their skills in solving business problems, creating and testing human-centered interfaces", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps"],
+                    courseProgramTitles: ["Aliquet lectus urna viverra in odio.", "Orci commodo, viverra orci mollis ut euismod.", "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi.", "Amet nec in pellentesque.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id."],
+                    courseProgramTextes: ["Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. ", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi "]
                 }, {
                     id: 9,
                     titlesPageTitle: "User Experience. Human-centered Design",
                     aboutCourseText: " Consequat senectus dictumst non hac dignissim montes, pretium, egestas molestie. Sed magna aliquet ornare nibh vel lectus diam eget pretium. Lorem risus nunc tincidunt tortor, mi nulla pellentesque",
-                    aboutCourseItems: [ "Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.", "Etiam duis lobortis in fames ultrices commodo nibh.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at." ],
+                    aboutCourseItems: ["Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.", "Etiam duis lobortis in fames ultrices commodo nibh.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at."],
                     aboutCourseDates: "May 20 – Nov 29",
                     aboutCourseDatesLabel: "Metus turpis sit lorem lacus, in elit tellus lacus.",
                     aboutCourseDuration: "9 days – 9 lessons",
@@ -4175,19 +4175,19 @@
                     curatorCourseImage: "img/course/09.png",
                     curatorCourseTitle: "Cody Fisher",
                     curatorCoursePosition: "Senior UX designer in IT Product Company",
-                    curatorCourseInfoIcon: [ "_icon-star", "_icon-Play", "_icon-Profile" ],
-                    curatorCourseInfo: [ "4.9 rate", "4 courses", "350 students" ],
+                    curatorCourseInfoIcon: ["_icon-star", "_icon-Play", "_icon-Profile"],
+                    curatorCourseInfo: ["4.9 rate", "4 courses", "350 students"],
                     curatorCourseText: "Mattis adipiscing aliquam eu proin metus a iaculis faucibus. Tempus curabitur venenatis, vulputate venenatis fermentum ante. Nisl, amet id semper semper quis commodo, consequat. Massa rhoncus sit morbi odio. Sit maecenas nibh consectetur vel diam. Sem vulputate molestie laoreet at massa sed pharetra. Ac commodo platea id habitasse proin. Nullam sit nec ipsum posuere non. Nam vel aliquam tristique sollicitudin interdum quam. ",
-                    curatorCourseLinksIcon: [ "_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In" ],
-                    curatorCourseLinks: [ "#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id" ],
-                    courseWhomItems: [ "Specialists with more than 1 year of active work experience", "Mobile app designers who want to improve their skills in solving business problems, creating and testing human-centered interfaces", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps" ],
-                    courseProgramTitles: [ "Aliquet lectus urna viverra in odio.", "Orci commodo, viverra orci mollis ut euismod.", "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi.", "Amet nec in pellentesque.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id." ],
-                    courseProgramTextes: [ "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. ", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi " ]
+                    curatorCourseLinksIcon: ["_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In"],
+                    curatorCourseLinks: ["#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id"],
+                    courseWhomItems: ["Specialists with more than 1 year of active work experience", "Mobile app designers who want to improve their skills in solving business problems, creating and testing human-centered interfaces", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps"],
+                    courseProgramTitles: ["Aliquet lectus urna viverra in odio.", "Orci commodo, viverra orci mollis ut euismod.", "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi.", "Amet nec in pellentesque.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id."],
+                    courseProgramTextes: ["Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. ", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi "]
                 }, {
                     id: 10,
                     titlesPageTitle: "Brand Management & PR Communications",
                     aboutCourseText: " Bibendum vulputate adipiscing venenatis at est, a eu tincidunt. Leo aenean congue in sagittis, felis maecenas amet varius at. Pellentesque euismod in faucibus at elementum. Tellus maecenas libero est tempus sit cras at malesuada diam. Consequat senectus dictumst non hac dignissim montes, pretium, egestas molestie. Sed magna aliquet ornare nibh vel lectus diam eget pretium. Lorem risus nunc tincidunt tortor, mi nulla pellentesque entesque euismod in faucibus at elementum. Tellus maecenas libero est tempus sit st non hac dignissim montes, pretium, egestas molestie. Sed magna aliquet ornare nibh vel lectus diam eget pretium. Lorem risus nunc tincidunt tortor, mi nulla pellentesque",
-                    aboutCourseItems: [ "A fermentum in morbi pretium aliquam adipiscing donec tempus.", "Vulputate placerat amet pulvinar lorem nisl.", "Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.", "Etiam duis lobortis in fames ultrices commodo nibh.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at.", "Etiam duis lobortis in fames ultrices commodo nibh.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at." ],
+                    aboutCourseItems: ["A fermentum in morbi pretium aliquam adipiscing donec tempus.", "Vulputate placerat amet pulvinar lorem nisl.", "Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.", "Etiam duis lobortis in fames ultrices commodo nibh.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at.", "Etiam duis lobortis in fames ultrices commodo nibh.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at."],
                     aboutCourseDates: "Dec 07 – Jun 06",
                     aboutCourseDatesLabel: "Metus turpis sit lorem lacus, in elit tellus lacus.",
                     aboutCourseDuration: "8 months – 32 lessons",
@@ -4197,19 +4197,19 @@
                     curatorCourseImage: "img/course/09.png",
                     curatorCourseTitle: "Kristin Watson",
                     curatorCoursePosition: "Senior UX designer in IT Product Company",
-                    curatorCourseInfoIcon: [ "_icon-star", "_icon-Play", "_icon-Profile" ],
-                    curatorCourseInfo: [ "4.9 rate", "4 courses", "350 students" ],
+                    curatorCourseInfoIcon: ["_icon-star", "_icon-Play", "_icon-Profile"],
+                    curatorCourseInfo: ["4.9 rate", "4 courses", "350 students"],
                     curatorCourseText: "Mattis adipiscing aliquam eu proin metus a iaculis faucibus. Tempus curabitur venenatis, vulputate venenatis fermentum ante. Nisl, amet id semper semper quis commodo, consequat. Massa rhoncus sit morbi odio. Sit maecenas nibh consectetur vel diam. Sem vulputate molestie laoreet at massa sed pharetra. Ac commodo platea id habitasse proin. Nullam sit nec ipsum posuere non. Nam vel aliquam tristique sollicitudin interdum quam. ",
-                    curatorCourseLinksIcon: [ "_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In" ],
-                    curatorCourseLinks: [ "#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id" ],
-                    courseWhomItems: [ "Specialists with more than 1 year of active work experience", "Mobile app designers who want to improve their skills in solving business problems, creating and testing human-centered interfaces", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps" ],
-                    courseProgramTitles: [ "Aliquet lectus urna viverra in odio.", "Orci commodo, viverra orci mollis ut euismod.", "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi.", "Amet nec in pellentesque.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id." ],
-                    courseProgramTextes: [ "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. ", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi " ]
+                    curatorCourseLinksIcon: ["_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In"],
+                    curatorCourseLinks: ["#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id"],
+                    courseWhomItems: ["Specialists with more than 1 year of active work experience", "Mobile app designers who want to improve their skills in solving business problems, creating and testing human-centered interfaces", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps"],
+                    courseProgramTitles: ["Aliquet lectus urna viverra in odio.", "Orci commodo, viverra orci mollis ut euismod.", "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi.", "Amet nec in pellentesque.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id."],
+                    courseProgramTextes: ["Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. ", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi "]
                 }, {
                     id: 11,
                     titlesPageTitle: "Graphic Design Basic",
                     aboutCourseText: "entesque euismod in faucibus at elementum. Tellus maecenas libero est tempus sit st non hac dignissim montes, pretium, egestas molestie. Bibendum vulputate adipiscing venenatis at est, a eu tincidunt. Leo aenean congue in sagittis, felis maecenas amet varius at. Pellentesque euismod in faucibus at elementum. Tellus maecenas libero est tempus sit cras at malesuada diam. Consequat senectus dictumst non hac dignissim montes, pretium, egestas molestie. Sed magna aliquet ornare nibh vel lectus diam eget pretium. Lorem risus nunc tincidunt tortor, mi nulla pellentesque",
-                    aboutCourseItems: [ "A fermentum in morbi pretium aliquam adipiscing donec tempus.", "Etiam duis lobortis in fames ultrices commodo nibh.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at." ],
+                    aboutCourseItems: ["A fermentum in morbi pretium aliquam adipiscing donec tempus.", "Etiam duis lobortis in fames ultrices commodo nibh.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at."],
                     aboutCourseDates: "Jan 02 – Jul 01",
                     aboutCourseDatesLabel: "Metus turpis sit lorem lacus, in elit tellus lacus.",
                     aboutCourseDuration: "10 months – 40 lessons",
@@ -4219,19 +4219,19 @@
                     curatorCourseImage: "img/course/09.png",
                     curatorCourseTitle: "Guy Hawkins",
                     curatorCoursePosition: "Senior UX designer in IT Product Company",
-                    curatorCourseInfoIcon: [ "_icon-star", "_icon-Play", "_icon-Profile" ],
-                    curatorCourseInfo: [ "4.9 rate", "4 courses", "350 students" ],
+                    curatorCourseInfoIcon: ["_icon-star", "_icon-Play", "_icon-Profile"],
+                    curatorCourseInfo: ["4.9 rate", "4 courses", "350 students"],
                     curatorCourseText: "Mattis adipiscing aliquam eu proin metus a iaculis faucibus. Tempus curabitur venenatis, vulputate venenatis fermentum ante. Nisl, amet id semper semper quis commodo, consequat. Massa rhoncus sit morbi odio. Sit maecenas nibh consectetur vel diam. Sem vulputate molestie laoreet at massa sed pharetra. Ac commodo platea id habitasse proin. Nullam sit nec ipsum posuere non. Nam vel aliquam tristique sollicitudin interdum quam. ",
-                    curatorCourseLinksIcon: [ "_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In" ],
-                    curatorCourseLinks: [ "#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id" ],
-                    courseWhomItems: [ "Specialists with more than 1 year of active work experience", "Mobile app designers who want to improve their skills in solving business problems, creating and testing human-centered interfaces", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps" ],
-                    courseProgramTitles: [ "Aliquet lectus urna viverra in odio.", "Orci commodo, viverra orci mollis ut euismod.", "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi.", "Amet nec in pellentesque.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id." ],
-                    courseProgramTextes: [ "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. ", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi " ]
+                    curatorCourseLinksIcon: ["_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In"],
+                    curatorCourseLinks: ["#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id"],
+                    courseWhomItems: ["Specialists with more than 1 year of active work experience", "Mobile app designers who want to improve their skills in solving business problems, creating and testing human-centered interfaces", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps"],
+                    courseProgramTitles: ["Aliquet lectus urna viverra in odio.", "Orci commodo, viverra orci mollis ut euismod.", "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi.", "Amet nec in pellentesque.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id."],
+                    courseProgramTextes: ["Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. ", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi "]
                 }, {
                     id: 12,
                     titlesPageTitle: "Business Development Management",
                     aboutCourseText: "Pellentesque euismod in faucibus at elementum. egestas molestie. Sed magna aliquet ornare nibh vel lectus diam eget pretium. Lorem risus nunc tincidunt tortor, mi nulla pellentesque",
-                    aboutCourseItems: [ "A fermentum in morbi pretium aliquam adipiscing donec tempus.", "Vulputate placerat amet pulvinar lorem nisl.", "Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.", "Etiam duis lobortis in fames ultrices commodo nibh." ],
+                    aboutCourseItems: ["A fermentum in morbi pretium aliquam adipiscing donec tempus.", "Vulputate placerat amet pulvinar lorem nisl.", "Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.", "Etiam duis lobortis in fames ultrices commodo nibh."],
                     aboutCourseDates: "Feb 28 – Aug 27",
                     aboutCourseDatesLabel: "Metus turpis sit lorem lacus, in elit tellus lacus.",
                     aboutCourseDuration: "11 months – 44 lessons",
@@ -4241,19 +4241,19 @@
                     curatorCourseImage: "img/course/09.png",
                     curatorCourseTitle: "Dianne Russell",
                     curatorCoursePosition: "Senior UX designer in IT Product Company",
-                    curatorCourseInfoIcon: [ "_icon-star", "_icon-Play", "_icon-Profile" ],
-                    curatorCourseInfo: [ "4.9 rate", "4 courses", "350 students" ],
+                    curatorCourseInfoIcon: ["_icon-star", "_icon-Play", "_icon-Profile"],
+                    curatorCourseInfo: ["4.9 rate", "4 courses", "350 students"],
                     curatorCourseText: "Mattis adipiscing aliquam eu proin metus a iaculis faucibus. Tempus curabitur venenatis, vulputate venenatis fermentum ante. Nisl, amet id semper semper quis commodo, consequat. Massa rhoncus sit morbi odio. Sit maecenas nibh consectetur vel diam. Sem vulputate molestie laoreet at massa sed pharetra. Ac commodo platea id habitasse proin. Nullam sit nec ipsum posuere non. Nam vel aliquam tristique sollicitudin interdum quam. ",
-                    curatorCourseLinksIcon: [ "_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In" ],
-                    curatorCourseLinks: [ "#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id" ],
-                    courseWhomItems: [ "Specialists with more than 1 year of active work experience", "Mobile app designers who want to improve their skills in solving business problems, creating and testing human-centered interfaces", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps" ],
-                    courseProgramTitles: [ "Aliquet lectus urna viverra in odio.", "Orci commodo, viverra orci mollis ut euismod.", "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi.", "Amet nec in pellentesque.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id." ],
-                    courseProgramTextes: [ "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. ", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi " ]
+                    curatorCourseLinksIcon: ["_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In"],
+                    curatorCourseLinks: ["#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id"],
+                    courseWhomItems: ["Specialists with more than 1 year of active work experience", "Mobile app designers who want to improve their skills in solving business problems, creating and testing human-centered interfaces", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps"],
+                    courseProgramTitles: ["Aliquet lectus urna viverra in odio.", "Orci commodo, viverra orci mollis ut euismod.", "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi.", "Amet nec in pellentesque.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id."],
+                    courseProgramTextes: ["Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. ", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi "]
                 }, {
                     id: 13,
                     titlesPageTitle: "Highload Software Architecture",
                     aboutCourseText: "Bibendum vulputate adipiscing venenatis at est, a eu tincidunt. Leo aenean congue in sagittis, felis maecenas amet varius at. Pellentesque euismod in faucibus at elementum. Tellus maecenas libero est tempus sit cras at malesuada diam. Consequat senectus dictumst non hac dignissim montes, pretium, egestas molestie. Sed magna aliquet ornare nibh vel lectus diam eget pretium. Lorem risus nunc tincidunt tortor, mi nulla pellentesqued magna aliquet ornare nibh vel lectus diam eget pretium. Lorem risus nunc tincidunt tortor, mi nulla pellentesque",
-                    aboutCourseItems: [ "A fermentum in morbi pretium aliquam adipiscing donec tempus.", "Vulputate placerat amet pulvinar lorem nisl.", "Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.", "Etiam duis lobortis in fames ultrices commodo nibh.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at." ],
+                    aboutCourseItems: ["A fermentum in morbi pretium aliquam adipiscing donec tempus.", "Vulputate placerat amet pulvinar lorem nisl.", "Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.", "Etiam duis lobortis in fames ultrices commodo nibh.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at."],
                     aboutCourseDates: "Mar 23 – Sep 22",
                     aboutCourseDatesLabel: "Metus turpis sit lorem lacus, in elit tellus lacus.",
                     aboutCourseDuration: "12 months – 48 lessons",
@@ -4263,19 +4263,19 @@
                     curatorCourseImage: "img/course/09.png",
                     curatorCourseTitle: "Brooklyn Simmons",
                     curatorCoursePosition: "Senior UX designer in IT Product Company",
-                    curatorCourseInfoIcon: [ "_icon-star", "_icon-Play", "_icon-Profile" ],
-                    curatorCourseInfo: [ "4.9 rate", "4 courses", "350 students" ],
+                    curatorCourseInfoIcon: ["_icon-star", "_icon-Play", "_icon-Profile"],
+                    curatorCourseInfo: ["4.9 rate", "4 courses", "350 students"],
                     curatorCourseText: "Mattis adipiscing aliquam eu proin metus a iaculis faucibus. Tempus curabitur venenatis, vulputate venenatis fermentum ante. Nisl, amet id semper semper quis commodo, consequat. Massa rhoncus sit morbi odio. Sit maecenas nibh consectetur vel diam. Sem vulputate molestie laoreet at massa sed pharetra. Ac commodo platea id habitasse proin. Nullam sit nec ipsum posuere non. Nam vel aliquam tristique sollicitudin interdum quam. ",
-                    curatorCourseLinksIcon: [ "_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In" ],
-                    curatorCourseLinks: [ "#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id" ],
-                    courseWhomItems: [ "Specialists with more than 1 year of active work experience", "Mobile app designers who want to improve their skills in solving business problems, creating and testing human-centered interfaces", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps" ],
-                    courseProgramTitles: [ "Aliquet lectus urna viverra in odio.", "Orci commodo, viverra orci mollis ut euismod.", "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi.", "Amet nec in pellentesque.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id." ],
-                    courseProgramTextes: [ "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. ", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi " ]
+                    curatorCourseLinksIcon: ["_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In"],
+                    curatorCourseLinks: ["#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id"],
+                    courseWhomItems: ["Specialists with more than 1 year of active work experience", "Mobile app designers who want to improve their skills in solving business problems, creating and testing human-centered interfaces", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps"],
+                    courseProgramTitles: ["Aliquet lectus urna viverra in odio.", "Orci commodo, viverra orci mollis ut euismod.", "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi.", "Amet nec in pellentesque.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id."],
+                    courseProgramTextes: ["Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. ", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi "]
                 }, {
                     id: 14,
                     titlesPageTitle: "Human Resources – Selection and Recruitment",
                     aboutCourseText: "Bibendum vulputate adipiscing venenatis at est, a eu tincidunt. Leo aenean congue in sagittis, felis maecenas amet varius at. Pellentesque euismod in faucibus at elementum. Tellus maecenas libero est tempus sit cras at malesuada diam. Consequat senectus dictumst non hac dignissim montes, pretium, egestas molestie. Sed magna aliquet ornare nibh vel lectus diam eget pretium. Lorem risus nunc tincidunt tortor, mi nulla pellentesque",
-                    aboutCourseItems: [ "Vulputate placerat amet pulvinar lorem nisl.", "Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.", "Etiam duis lobortis in fames ultrices commodo nibh.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at." ],
+                    aboutCourseItems: ["Vulputate placerat amet pulvinar lorem nisl.", "Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.", "Etiam duis lobortis in fames ultrices commodo nibh.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at."],
                     aboutCourseDates: "Apr 14 – Oct 13",
                     aboutCourseDatesLabel: "Metus turpis sit lorem lacus, in elit tellus lacus.",
                     aboutCourseDuration: "6 months – 10 lessons",
@@ -4285,19 +4285,19 @@
                     curatorCourseImage: "img/course/09.png",
                     curatorCourseTitle: "Kathryn Murphy",
                     curatorCoursePosition: "Senior UX designer in IT Product Company",
-                    curatorCourseInfoIcon: [ "_icon-star", "_icon-Play", "_icon-Profile" ],
-                    curatorCourseInfo: [ "4.9 rate", "4 courses", "350 students" ],
+                    curatorCourseInfoIcon: ["_icon-star", "_icon-Play", "_icon-Profile"],
+                    curatorCourseInfo: ["4.9 rate", "4 courses", "350 students"],
                     curatorCourseText: "Mattis adipiscing aliquam eu proin metus a iaculis faucibus. Tempus curabitur venenatis, vulputate venenatis fermentum ante. Nisl, amet id semper semper quis commodo, consequat. Massa rhoncus sit morbi odio. Sit maecenas nibh consectetur vel diam. Sem vulputate molestie laoreet at massa sed pharetra. Ac commodo platea id habitasse proin. Nullam sit nec ipsum posuere non. Nam vel aliquam tristique sollicitudin interdum quam. ",
-                    curatorCourseLinksIcon: [ "_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In" ],
-                    curatorCourseLinks: [ "#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id" ],
-                    courseWhomItems: [ "Specialists with more than 1 year of active work experience", "Mobile app designers who want to improve their skills in solving business problems, creating and testing human-centered interfaces", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps" ],
-                    courseProgramTitles: [ "Aliquet lectus urna viverra in odio.", "Orci commodo, viverra orci mollis ut euismod.", "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi.", "Amet nec in pellentesque.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id." ],
-                    courseProgramTextes: [ "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. ", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi " ]
+                    curatorCourseLinksIcon: ["_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In"],
+                    curatorCourseLinks: ["#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id"],
+                    courseWhomItems: ["Specialists with more than 1 year of active work experience", "Mobile app designers who want to improve their skills in solving business problems, creating and testing human-centered interfaces", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps"],
+                    courseProgramTitles: ["Aliquet lectus urna viverra in odio.", "Orci commodo, viverra orci mollis ut euismod.", "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi.", "Amet nec in pellentesque.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id."],
+                    courseProgramTextes: ["Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. ", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi "]
                 }, {
                     id: 15,
                     titlesPageTitle: "User Experience. Human-centered Design",
                     aboutCourseText: "Sed magna aliquet ornare nibh vel lectus diam eget pretium. Lorem risus nunc tincidunt tortor, mi nulla pellentesque",
-                    aboutCourseItems: [ "A fermentum in morbi pretium aliquam adipiscing donec tempus.", "Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at." ],
+                    aboutCourseItems: ["A fermentum in morbi pretium aliquam adipiscing donec tempus.", "Consequat feugiat habitant gravida quisque elit bibendum id adipiscing sed.", "Fringilla in nec risus congue venenatis pretium posuere nec.", "Cursus eu pretium, vulputate tempus quam massa sed at."],
                     aboutCourseDates: "May 09 – Nov 08",
                     aboutCourseDatesLabel: "Metus turpis sit lorem lacus, in elit tellus lacus.",
                     aboutCourseDuration: "2 months – 4 lessons",
@@ -4307,15 +4307,15 @@
                     curatorCourseImage: "img/course/09.png",
                     curatorCourseTitle: "Cody Fisher",
                     curatorCoursePosition: "Senior UX designer in IT Product Company",
-                    curatorCourseInfoIcon: [ "_icon-star", "_icon-Play", "_icon-Profile" ],
-                    curatorCourseInfo: [ "4.9 rate", "4 courses", "350 students" ],
+                    curatorCourseInfoIcon: ["_icon-star", "_icon-Play", "_icon-Profile"],
+                    curatorCourseInfo: ["4.9 rate", "4 courses", "350 students"],
                     curatorCourseText: "Mattis adipiscing aliquam eu proin metus a iaculis faucibus. Tempus curabitur venenatis, vulputate venenatis fermentum ante. Nisl, amet id semper semper quis commodo, consequat. Massa rhoncus sit morbi odio. Sit maecenas nibh consectetur vel diam. Sem vulputate molestie laoreet at massa sed pharetra. Ac commodo platea id habitasse proin. Nullam sit nec ipsum posuere non. Nam vel aliquam tristique sollicitudin interdum quam. ",
-                    curatorCourseLinksIcon: [ "_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In" ],
-                    curatorCourseLinks: [ "#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id" ],
-                    courseWhomItems: [ "Specialists with more than 1 year of active work experience", "Mobile app designers who want to improve their skills in solving business problems, creating and testing human-centered interfaces", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps" ],
-                    courseProgramTitles: [ "Aliquet lectus urna viverra in odio.", "Orci commodo, viverra orci mollis ut euismod.", "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi.", "Amet nec in pellentesque.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id." ],
-                    courseProgramTextes: [ "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. ", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi " ]
-                } ]
+                    curatorCourseLinksIcon: ["_icon-Facebook", "_icon-behance", "_icon-Twitter", "_icon-Linked-In"],
+                    curatorCourseLinks: ["#link-facebooke", "#link-behance", "#link-twitter", "#link-linked-id"],
+                    courseWhomItems: ["Specialists with more than 1 year of active work experience", "Mobile app designers who want to improve their skills in solving business problems, creating and testing human-centered interfaces", "Professional designers who want to feel more confident in UX", "Specialists who would like to structure their knowledge, fill in the gaps"],
+                    courseProgramTitles: ["Aliquet lectus urna viverra in odio.", "Orci commodo, viverra orci mollis ut euismod.", "Sagittis vitae facilisi rutrum amet mauris quisque vel.", "In id dolor quis nunc, urna hendrerit pharetra.", "Est, ut tempus id rutrum facilisi.", "Amet nec in pellentesque.", "Massa vel arcu mauris, id vel rhoncus mattis quis.", "Neque, cursus sapien nullam id."],
+                    courseProgramTextes: ["Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curabitur turpis varius mauris. Nisi, tempus risus, odio mi suscipit sed. Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Curabitur faucibus porttitor quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "honcus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus quis sem lacus, arcu feugiat facilisis. Commodo nunc orci vitae accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar a id.", "accumsan id.", "Nulla amet, sagittis potenti rhoncus sit. ", "Nulla amet, sagittis potenti rhoncus sit. Elit lectus nec pulvinar aliquet donec enim, ornare. Lacus facilisi curacilisis. Commodo nunc orci vitae accumsan id.", "facilisi "]
+                }]
             };
             class coursePage {
                 constructor(id, titlesPageTitle, aboutCourseText, aboutCourseItems, aboutCourseDates, aboutCourseDatesLabel, aboutCourseDuration, aboutCourseDurationLabel, aboutCoursePrice, aboutCoursePriceLabel, curatorCourseImage, curatorCourseTitle, curatorCoursePosition, curatorCourseInfoIcon, curatorCourseInfo, curatorCourseText, curatorCourseLinksIcon, curatorCourseLinks, courseWhomItems, courseProgramTitles, courseProgramTextes, ...classes) {
@@ -4424,7 +4424,7 @@
             }
             coursesPages.coursePage.forEach(((item, index) => {
                 if (item.id == /\?id=(\d+)/.exec(window.location.href)[1]) {
-                    const {id, titlesPageTitle, aboutCourseText, aboutCourseItems, aboutCourseDates, aboutCourseDatesLabel, aboutCourseDuration, aboutCourseDurationLabel, aboutCoursePrice, aboutCoursePriceLabel, curatorCourseImage, curatorCourseTitle, curatorCoursePosition, curatorCourseLinksIcon, curatorCourseInfoIcon, curatorCourseInfo, curatorCourseText, curatorCourseLinks, courseWhomItems, courseProgramTitles, courseProgramTextes} = coursesPages.coursePage[index++];
+                    const { id, titlesPageTitle, aboutCourseText, aboutCourseItems, aboutCourseDates, aboutCourseDatesLabel, aboutCourseDuration, aboutCourseDurationLabel, aboutCoursePrice, aboutCoursePriceLabel, curatorCourseImage, curatorCourseTitle, curatorCoursePosition, curatorCourseLinksIcon, curatorCourseInfoIcon, curatorCourseInfo, curatorCourseText, curatorCourseLinks, courseWhomItems, courseProgramTitles, courseProgramTextes } = coursesPages.coursePage[index++];
                     new coursePage(id, titlesPageTitle, aboutCourseText, aboutCourseItems, aboutCourseDates, aboutCourseDatesLabel, aboutCourseDuration, aboutCourseDurationLabel, aboutCoursePrice, aboutCoursePriceLabel, curatorCourseImage, curatorCourseTitle, curatorCoursePosition, curatorCourseInfoIcon, curatorCourseInfo, curatorCourseText, curatorCourseLinksIcon, curatorCourseLinks, courseWhomItems, courseProgramTitles, courseProgramTextes).render();
                 }
             }));
@@ -4433,9 +4433,9 @@
         function getRestOftime(eventtime) {
             let days, hours, minutes, seconds;
             const total = Math.floor(Date.parse(eventtime) - Date.parse(new Date));
-            if (total <= 0) days = 0, hours = 0, minutes = 0, seconds = 0; else days = Math.floor(total / (1e3 * 60 * 60 * 24)), 
-            hours = Math.floor(total / (1e3 * 60 * 60) % 24), minutes = Math.floor(total / 1e3 / 60 % 60), 
-            seconds = Math.floor(total / 1e3 % 60);
+            if (total <= 0) days = 0, hours = 0, minutes = 0, seconds = 0; else days = Math.floor(total / (1e3 * 60 * 60 * 24)),
+                hours = Math.floor(total / (1e3 * 60 * 60) % 24), minutes = Math.floor(total / 1e3 / 60 % 60),
+                seconds = Math.floor(total / 1e3 % 60);
             return {
                 total,
                 days,
